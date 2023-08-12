@@ -1,0 +1,55 @@
+{
+	"name": "number-zh",
+	"private": true,
+	"type": "module",
+	"license": "MIT",
+	"packageManager": "pnpm@8.6.12",
+	"author": "Condor Hero",
+	"description": "数字转（大写，小写）中文数字，金额",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/condorheroblog/number-zh.git"
+	},
+	"bugs": {
+		"url": "https://github.com/condorheroblog/number-zh/issues"
+	},
+	"homepage": "https://github.com/condorheroblog/number-zh/blob/main/README.md",
+	"scripts": {
+		"prepublishOnly": "nr build",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
+		"format": "prettier --write .",
+		"test": "vitest",
+		"build": "rimraf dist && rollup -c",
+		"build:watch": "rimraf dist && rollup -c -w",
+		"typecheck": "tsc --noEmit",
+		"release": "bumpp -r && pnpm -r publish --access public"
+	},
+	"simple-git-hooks": {
+		"pre-commit": "npx lint-staged"
+	},
+	"lint-staged": {
+		"*.{ts,js}": [
+			"eslint --fix",
+			"prettier --write"
+		]
+	},
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^6.3.0",
+		"@typescript-eslint/parser": "^6.3.0",
+		"bumpp": "^9.1.1",
+		"esbuild": "^0.19.1",
+		"eslint": "^8.47.0",
+		"eslint-config-prettier": "^9.0.0",
+		"eslint-plugin-prettier": "^5.0.0",
+		"esno": "^0.17.0",
+		"lint-staged": "^13.2.3",
+		"prettier": "^3.0.1",
+		"rollup": "^3.28.0",
+		"rollup-plugin-dts": "^5.3.1",
+		"rollup-plugin-esbuild": "^5.0.0",
+		"simple-git-hooks": "^2.9.0",
+		"typescript": "^5.1.6",
+		"vitest": "^0.34.1"
+	}
+}

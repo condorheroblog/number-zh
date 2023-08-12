@@ -1,0 +1,58 @@
+{
+	"name": "zh-to-number",
+	"version": "0.0.0",
+	"type": "module",
+	"license": "MIT",
+	"author": "Condor Hero",
+	"description": "数字转（大写，小写）中文数字，金额",
+	"bin": {},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"require": "./dist/index.cjs",
+			"import": "./dist/index.mjs"
+		}
+	},
+	"main": "dist/index.cjs",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"typesVersions": {
+		"*": {
+			"*": [
+				"./dist/*",
+				"./dist/index.d.ts"
+			]
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"keywords": [
+		"number-to-zh",
+		"zh-to-number",
+		"number-to-money",
+		"中文转阿拉伯数字",
+		"阿拉伯数字转中文"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/condorheroblog/number-zh.git",
+		"directory": "packages/zh-to-number"
+	},
+	"bugs": {
+		"url": "https://github.com/condorheroblog/number-zh/issues"
+	},
+	"homepage": "https://github.com/condorheroblog/number-zh/blob/main/README.md",
+	"scripts": {
+		"prepublishOnly": "nr build",
+		"test": "vitest",
+		"build": "rimraf dist && rollup -c",
+		"build:watch": "rimraf dist && rollup -c -w",
+		"typecheck": "tsc --noEmit",
+		"release": "bumpp && pnpm publish"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org"
+	}
+}
