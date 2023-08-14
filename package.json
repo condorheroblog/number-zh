@@ -15,6 +15,7 @@
 	},
 	"homepage": "https://github.com/condorheroblog/number-zh/blob/main/README.md",
 	"scripts": {
+		"postinstall": "simple-git-hooks",
 		"prepublishOnly": "nr build",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",

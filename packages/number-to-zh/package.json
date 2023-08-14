@@ -46,6 +46,7 @@
 	"scripts": {
 		"prepublishOnly": "nr build",
 		"test": "vitest",
+		"dev": "esno ./src/numberToZh.ts",
 		"build": "rimraf dist && rollup -c",
 		"build:watch": "rimraf dist && rollup -c -w",
 		"typecheck": "tsc --noEmit",
