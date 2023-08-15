@@ -5,13 +5,20 @@ import {
 	removeConsecutiveZeros,
 	scientificToNumber,
 } from ".";
-import { MINUS_SIGN, DECIMAL_POINT, DIGITS_LIST, MAGNITUDE_LIST, LOWERCASE_CHINESE_NUMERALS } from "./constant";
+import { RESOURCES } from "./constant";
 
+export interface resourcesType {
+	[key: string]: {
+		digitsList: string[];
+		magnitudeList: string[];
+		baseNumerals: string[];
+		minusSign: string;
+		decimalPoint: string;
+	};
+}
 export interface NumberToZhOptions {
-	digitsList?: string[];
-	magnitudeList?: string[];
-	minusSign?: string;
-	decimalPoint?: string;
+	language?: keyof typeof RESOURCES;
+	resources?: resourcesType;
 }
 
 export function numberToZh(num: number | string, options: NumberToZhOptions = {}) {
@@ -20,7 +27,7 @@ export function numberToZh(num: number | string, options: NumberToZhOptions = {}
 		if (isScientificNotation(num)) {
 			numString = scientificToNumber(numString);
 		} else {
-			throw new Error("Invalid input. Not an effective Scientific notation.");
+			throw new Error("Invalid input. Please provide a valid number.");
 		}
 	}
 
@@ -29,6 +36,11 @@ export function numberToZh(num: number | string, options: NumberToZhOptions = {}
 	const { sign, integerPart, fractionalPart } = parseRationalNumber(numString);
 
 	const integerSize = integerPart.length;
+	// 整数部分边界检测
+	if (resolved.digitsList.length * resolved.magnitudeList.length < integerSize) {
+		// \nThe integer part exceeds the maximum counting unit that can be represented, please set a larger magnitude
+		throw new Error(`整数部分超出能表示的最大计数单位，请设置更大的数级（magnitude）`);
+	}
 	for (let i = 0; i < integerSize; i++) {
 		const arabicIndex = integerSize - 1 - i;
 		const digitsIndex = i % 4;
@@ -36,7 +48,7 @@ export function numberToZh(num: number | string, options: NumberToZhOptions = {}
 		let magnitude = "";
 		let digits = "";
 		const arabicNumber = integerPart.charAt(arabicIndex);
-		let chineseNumber = LOWERCASE_CHINESE_NUMERALS[+arabicNumber];
+		let chineseNumber = resolved.baseNumerals[+arabicNumber];
 
 		// 每隔四位加一个数级
 		if (digitsIndex === 0) {
@@ -46,7 +58,7 @@ export function numberToZh(num: number | string, options: NumberToZhOptions = {}
 				chineseNumber = "";
 			}
 		}
-		// 如果值 0 不加数位
+		// 如果值为 0 不加数位
 		if (+arabicNumber > 0) {
 			digits = resolved.digitsList[digitsIndex];
 		}
@@ -54,14 +66,14 @@ export function numberToZh(num: number | string, options: NumberToZhOptions = {}
 		// 删除连续的零：一千零零零万零零零一
 		finalChineseNumber = removeConsecutiveZeros(
 			chineseNumber + digits + magnitude + finalChineseNumber,
-			LOWERCASE_CHINESE_NUMERALS[0],
+			resolved.baseNumerals[0],
 		);
 	}
 
 	if (fractionalPart) {
 		finalChineseNumber += resolved.decimalPoint;
 		for (const char of fractionalPart) {
-			finalChineseNumber += LOWERCASE_CHINESE_NUMERALS[+char];
+			finalChineseNumber += resolved.baseNumerals[+char];
 		}
 	}
 
@@ -69,10 +81,13 @@ export function numberToZh(num: number | string, options: NumberToZhOptions = {}
 }
 
 export function resolveOptions(options: NumberToZhOptions) {
-	return {
-		digitsList: options.digitsList ?? DIGITS_LIST,
-		magnitudeList: options.magnitudeList ?? MAGNITUDE_LIST,
-		minusSign: options.minusSign ?? MINUS_SIGN,
-		decimalPoint: options.decimalPoint ?? DECIMAL_POINT,
-	};
+	const resources = options.resources ?? RESOURCES;
+	if (options.language) {
+		if (!resources.hasOwnProperty(options.language)) {
+			throw new Error(`language does not appear in resources`);
+		} else {
+			return resources[options.language];
+		}
+	}
+	return resources["zh-CN-lowercase"];
 }

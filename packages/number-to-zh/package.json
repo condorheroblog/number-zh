@@ -4,8 +4,7 @@
 	"type": "module",
 	"license": "MIT",
 	"author": "Condor Hero",
-	"description": "数字转（大写，小写）中文数字，金额",
-	"bin": {},
+	"description": "数字转（大写，小写）简 / 繁体中文数字",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
@@ -31,8 +30,16 @@
 		"number-to-zh",
 		"zh-to-number",
 		"number-to-money",
+		"中文数字读法",
+		"数字转中文数字",
 		"中文转阿拉伯数字",
-		"阿拉伯数字转中文"
+		"阿拉伯数字转中文数字",
+		"阿拉伯数字转简体中文数字",
+		"阿拉伯数字转小写简体中文数字",
+		"阿拉伯数字转大写简体中文数字",
+		"阿拉伯数字转繁体中文数字",
+		"阿拉伯数字转大写繁体中文数字",
+		"阿拉伯数字转小写繁体中文数字"
 	],
 	"repository": {
 		"type": "git",

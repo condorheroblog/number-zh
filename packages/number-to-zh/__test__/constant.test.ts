@@ -1,50 +1,173 @@
 import { describe, test } from "vitest";
-import { DIGITS_LIST, MAGNITUDE_LIST, MINUS_SIGN, DECIMAL_POINT, LOWERCASE_CHINESE_NUMERALS } from "../src";
+import { RESOURCES } from "../src";
 
 describe("constant", () => {
-	test("MINUS_SIGN", async ({ expect }) => {
-		expect(MINUS_SIGN).toMatchInlineSnapshot('"负"');
-	});
-
-	test("DECIMAL_POINT", async ({ expect }) => {
-		expect(DECIMAL_POINT).toMatchInlineSnapshot('"点"');
-	});
-
-	test("DIGITS_LIST", async ({ expect }) => {
-		expect(DIGITS_LIST).toMatchInlineSnapshot(`
-			[
-			  "",
-			  "十",
-			  "百",
-			  "千",
-			]
-		`);
-	});
-
-	test("MAGNITUDE_LIST", async ({ expect }) => {
-		expect(MAGNITUDE_LIST).toMatchInlineSnapshot(`
-			[
-			  "",
-			  "万",
-			  "亿",
-			]
-		`);
-	});
-
-	test("LOWERCASE_CHINESE_NUMERALS", async ({ expect }) => {
-		expect(LOWERCASE_CHINESE_NUMERALS).toMatchInlineSnapshot(`
-			[
-			  "零",
-			  "一",
-			  "二",
-			  "三",
-			  "四",
-			  "五",
-			  "六",
-			  "七",
-			  "八",
-			  "九",
-			]
+	test("RESOURCES", async ({ expect }) => {
+		expect(RESOURCES).toMatchInlineSnapshot(`
+			{
+			  "zh-CN-lowercase": {
+			    "baseNumerals": [
+			      "零",
+			      "一",
+			      "二",
+			      "三",
+			      "四",
+			      "五",
+			      "六",
+			      "七",
+			      "八",
+			      "九",
+			    ],
+			    "decimalPoint": "点",
+			    "digitsList": [
+			      "",
+			      "十",
+			      "百",
+			      "千",
+			    ],
+			    "magnitudeList": [
+			      "",
+			      "万",
+			      "亿",
+			    ],
+			    "minusSign": "负",
+			  },
+			  "zh-CN-uppercase": {
+			    "baseNumerals": [
+			      "零",
+			      "壹",
+			      "贰",
+			      "叁",
+			      "肆",
+			      "伍",
+			      "陆",
+			      "柒",
+			      "捌",
+			      "玖",
+			    ],
+			    "decimalPoint": "点",
+			    "digitsList": [
+			      "",
+			      "拾",
+			      "佰",
+			      "仟",
+			    ],
+			    "magnitudeList": [
+			      "",
+			      "万",
+			      "亿",
+			    ],
+			    "minusSign": "负",
+			  },
+			  "zh-HK-lowercase": {
+			    "baseNumerals": [
+			      "零",
+			      "一",
+			      "二",
+			      "三",
+			      "四",
+			      "五",
+			      "六",
+			      "七",
+			      "八",
+			      "九",
+			    ],
+			    "decimalPoint": "點",
+			    "digitsList": [
+			      "",
+			      "十",
+			      "百",
+			      "千",
+			    ],
+			    "magnitudeList": [
+			      "",
+			      "萬",
+			      "億",
+			    ],
+			    "minusSign": "負",
+			  },
+			  "zh-HK-uppercase": {
+			    "baseNumerals": [
+			      "零",
+			      "壹",
+			      "貳",
+			      "參",
+			      "肆",
+			      "伍",
+			      "陸",
+			      "柒",
+			      "捌",
+			      "玖",
+			    ],
+			    "decimalPoint": "點",
+			    "digitsList": [
+			      "",
+			      "拾",
+			      "佰",
+			      "仟",
+			    ],
+			    "magnitudeList": [
+			      "",
+			      "萬",
+			      "億",
+			    ],
+			    "minusSign": "負",
+			  },
+			  "zh-TW-lowercase": {
+			    "baseNumerals": [
+			      "零",
+			      "一",
+			      "二",
+			      "三",
+			      "四",
+			      "五",
+			      "六",
+			      "七",
+			      "八",
+			      "九",
+			    ],
+			    "decimalPoint": "點",
+			    "digitsList": [
+			      "",
+			      "十",
+			      "百",
+			      "千",
+			    ],
+			    "magnitudeList": [
+			      "",
+			      "萬",
+			      "億",
+			    ],
+			    "minusSign": "負",
+			  },
+			  "zh-TW-uppercase": {
+			    "baseNumerals": [
+			      "零",
+			      "壹",
+			      "貳",
+			      "參",
+			      "肆",
+			      "伍",
+			      "陸",
+			      "柒",
+			      "捌",
+			      "玖",
+			    ],
+			    "decimalPoint": "點",
+			    "digitsList": [
+			      "",
+			      "拾",
+			      "佰",
+			      "仟",
+			    ],
+			    "magnitudeList": [
+			      "",
+			      "萬",
+			      "億",
+			    ],
+			    "minusSign": "負",
+			  },
+			}
 		`);
 	});
 });
