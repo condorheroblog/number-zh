@@ -4,7 +4,7 @@ import {
 	parseRationalNumber,
 	removeConsecutiveZeros,
 	scientificToNumber,
-} from ".";
+} from "../../core/src";
 import { RESOURCES } from "./constant";
 
 export interface resourcesType {
@@ -21,6 +21,7 @@ export interface NumberToZhOptions {
 	resources?: resourcesType;
 }
 
+export default numberToZh;
 export function numberToZh(num: number | string, options: NumberToZhOptions = {}) {
 	let numString = num.toString();
 	if (!isValidNumber(num)) {

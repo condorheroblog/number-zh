@@ -1,5 +1,5 @@
 // https://www.shuxuele.com/numbers/scientific-notation.html
-import { isScientificNotation } from ".";
+import { isScientificNotation } from "./isScientificNotation";
 
 export function scientificToNumber(num: number | string) {
 	const numString = num.toString();

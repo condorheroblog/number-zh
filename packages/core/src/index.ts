@@ -1,4 +1,3 @@
-export * from "./logger";
 export * from "./isValidNumber";
 export * from "./scientificToNumber";
 export * from "./parseRationalNumber";

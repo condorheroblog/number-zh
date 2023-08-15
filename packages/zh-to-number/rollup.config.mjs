@@ -27,9 +27,9 @@ export const rollupConfig = [
 				format: "esm",
 			},
 			{
-				file: "./dist/index.js",
+				file: "./dist/zh-to-number.global.js",
 				format: "iife",
-				name: "zhToNumber",
+				name: "__ZH_TO_NUMBER__",
 			},
 		],
 	},

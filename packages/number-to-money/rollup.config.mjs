@@ -27,9 +27,9 @@ export const rollupConfig = [
 				format: "esm",
 			},
 			{
-				file: "./dist/index.js",
+				file: "./dist/number-to-money.global.js",
 				format: "iife",
-				name: "numberToMoney",
+				name: "__NUMBER_TO_MONEY__",
 			},
 		],
 	},
