@@ -19,6 +19,7 @@ export interface resourcesType {
 export interface NumberToZhOptions {
 	language?: keyof typeof RESOURCES;
 	resources?: resourcesType;
+	skipOneBeforeTen?: boolean;
 }
 
 export default numberToZh;
@@ -71,6 +72,14 @@ export function numberToZh(num: number | string, options: NumberToZhOptions = {}
 		);
 	}
 
+	// 一十读作十
+	if (
+		resolved.skipOneBeforeTen &&
+		finalChineseNumber.startsWith(`${resolved.baseNumerals[1]}${resolved.digitsList[1]}`)
+	) {
+		finalChineseNumber = finalChineseNumber.slice(1);
+	}
+
 	if (fractionalPart) {
 		finalChineseNumber += resolved.decimalPoint;
 		for (const char of fractionalPart) {
@@ -83,12 +92,15 @@ export function numberToZh(num: number | string, options: NumberToZhOptions = {}
 
 export function resolveOptions(options: NumberToZhOptions) {
 	const resources = options.resources ?? RESOURCES;
-	if (options.language) {
-		if (!resources.hasOwnProperty(options.language)) {
-			throw new Error(`language does not appear in resources`);
-		} else {
-			return resources[options.language];
-		}
+	if (options.language && !resources.hasOwnProperty(options.language)) {
+		throw new Error(`language does not appear in resources`);
 	}
-	return resources["zh-CN-lowercase"];
+
+	const language = options.language ?? "zh-CN-lowercase";
+	const skipOneBeforeTen = options.skipOneBeforeTen ?? false;
+
+	return {
+		skipOneBeforeTen,
+		...resources[language],
+	};
 }

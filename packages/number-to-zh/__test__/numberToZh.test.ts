@@ -115,3 +115,24 @@ describe(`${numberToZh.name} - count unit exceeded`, () => {
 		expect(numberToZh(1.23456789e12, options)).toBe("壹兆贰仟叁佰肆拾伍亿陆仟柒佰捌拾玖万零");
 	});
 });
+
+describe(`${numberToZh.name} - skipOneBeforeTen`, () => {
+	test(`skipOneBeforeTen is false`, async ({ expect }) => {
+		expect(numberToZh(10)).toBe("一十");
+		expect(numberToZh(20)).toBe("二十");
+		expect(numberToZh(10_0001)).toBe("一十万零一");
+		expect(numberToZh(10_0101)).toBe("一十万零一百零一");
+		expect(numberToZh(10_1001)).toBe("一十万一千零一");
+		expect(numberToZh(10_1010)).toBe("一十万一千零一十");
+	});
+
+	test(`skipOneBeforeTen is true`, async ({ expect }) => {
+		const options = { skipOneBeforeTen: true };
+		expect(numberToZh(10, options)).toBe("十");
+		expect(numberToZh(20, options)).toBe("二十");
+		expect(numberToZh(10_0001, options)).toBe("十万零一");
+		expect(numberToZh(10_0101, options)).toBe("十万零一百零一");
+		expect(numberToZh(10_1001, options)).toBe("十万一千零一");
+		expect(numberToZh(10_1010, options)).toBe("十万一千零一十");
+	});
+});

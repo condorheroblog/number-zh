@@ -18,5 +18,14 @@ npm install -D number-to-zh
 ```ts
 import { numberToZh } from "number-to-zh";
 // 一千零万零一
-numberToZh(1000_0001));
+numberToZh(1000_0001);
+```
+
+### 十的口语化
+
+「10」 读作「一十」，但很多时候口语化读成「十」省略了十前面的一，这种情况可以通过 `skipOneBeforeTen` 参数设置：
+
+```ts
+// 10 => 十
+numberToZh(10, { skipOneBeforeTen: true });
 ```
