@@ -21,6 +21,12 @@ import { numberToZh } from "number-to-zh";
 numberToZh(1000_0001);
 ```
 
+### 万万
+
+### 亿亿
+
+
+
 ### 十的口语化
 
 「10」 读作「一十」，但很多时候口语化读成「十」省略了十前面的一，这种情况可以通过 `skipOneBeforeTen` 参数设置：
@@ -29,3 +35,6 @@ numberToZh(1000_0001);
 // 10 => 十
 numberToZh(10, { skipOneBeforeTen: true });
 ```
+
+
+

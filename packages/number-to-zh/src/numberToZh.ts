@@ -1,3 +1,4 @@
+import type { NumberToZhOptions } from "./types";
 import {
 	isValidNumber,
 	isScientificNotation,
@@ -6,21 +7,6 @@ import {
 	scientificToNumber,
 } from "../../core/src";
 import { RESOURCES } from "./constant";
-
-export interface resourcesType {
-	[key: string]: {
-		digitsList: string[];
-		magnitudeList: string[];
-		baseNumerals: string[];
-		minusSign: string;
-		decimalPoint: string;
-	};
-}
-export interface NumberToZhOptions {
-	language?: keyof typeof RESOURCES;
-	resources?: resourcesType;
-	skipOneBeforeTen?: boolean;
-}
 
 export default numberToZh;
 export function numberToZh(num: number | string, options: NumberToZhOptions = {}) {
@@ -55,7 +41,7 @@ export function numberToZh(num: number | string, options: NumberToZhOptions = {}
 		// 每隔四位加一个数级
 		if (digitsIndex === 0) {
 			magnitude = resolved.magnitudeList[magnitudeIndex];
-			// 移除「非零」整数「个位数位」上的「零」
+			// 移除「非零」整数「个位数位」上的「零」 10_0001 错误解析为十零万
 			if (integerSize > 1 && arabicNumber === "0") {
 				chineseNumber = "";
 			}
@@ -64,12 +50,14 @@ export function numberToZh(num: number | string, options: NumberToZhOptions = {}
 		if (+arabicNumber > 0) {
 			digits = resolved.digitsList[digitsIndex];
 		}
+		finalChineseNumber = chineseNumber + digits + magnitude + finalChineseNumber;
+	}
 
-		// 删除连续的零：一千零零零万零零零一
-		finalChineseNumber = removeConsecutiveZeros(
-			chineseNumber + digits + magnitude + finalChineseNumber,
-			resolved.baseNumerals[0],
-		);
+	// 删除中间连续的零：一千零零零万零零零一 => 一千零万零一, 二十零 => 二十
+	finalChineseNumber = removeConsecutiveZeros(finalChineseNumber, resolved.baseNumerals[0]);
+	// 删除结尾连续的零：二十零 => 二十
+	if (finalChineseNumber.length > 1 && finalChineseNumber.endsWith(`${resolved.baseNumerals[0]}`)) {
+		finalChineseNumber = finalChineseNumber.slice(0, finalChineseNumber.length - 1);
 	}
 
 	// 一十读作十
@@ -79,6 +67,8 @@ export function numberToZh(num: number | string, options: NumberToZhOptions = {}
 	) {
 		finalChineseNumber = finalChineseNumber.slice(1);
 	}
+
+	/* ----------  上面是整数部分，下面十小数部分 ---------- */
 
 	if (fractionalPart) {
 		finalChineseNumber += resolved.decimalPoint;
