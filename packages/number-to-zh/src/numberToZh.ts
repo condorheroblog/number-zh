@@ -3,7 +3,7 @@ import {
 	isValidNumber,
 	isScientificNotation,
 	parseRationalNumber,
-	removeConsecutiveZeros,
+	clearZero,
 	scientificToNumber,
 } from "../../core/src";
 import { RESOURCES } from "./constant";
@@ -29,36 +29,12 @@ export function numberToZh(num: number | string, options: NumberToZhOptions = {}
 		// \nThe integer part exceeds the maximum counting unit that can be represented, please set a larger magnitude
 		throw new Error(`整数部分超出能表示的最大计数单位，请设置更大的数级（magnitude）`);
 	}
-	for (let i = 0; i < integerSize; i++) {
-		const arabicIndex = integerSize - 1 - i;
-		const digitsIndex = i % 4;
-		const magnitudeIndex = Math.floor(i / 4);
-		let magnitude = "";
-		let digits = "";
-		const arabicNumber = integerPart.charAt(arabicIndex);
-		let chineseNumber = resolved.baseNumerals[+arabicNumber];
 
-		// 每隔四位加一个数级
-		if (digitsIndex === 0) {
-			magnitude = resolved.magnitudeList[magnitudeIndex];
-			// 移除「非零」整数「个位数位」上的「零」 10_0001 错误解析为十零万
-			if (integerSize > 1 && arabicNumber === "0") {
-				chineseNumber = "";
-			}
-		}
-		// 如果值为 0 不加数位
-		if (+arabicNumber > 0) {
-			digits = resolved.digitsList[digitsIndex];
-		}
-		finalChineseNumber = chineseNumber + digits + magnitude + finalChineseNumber;
-	}
-
-	// 删除中间连续的零：一千零零零万零零零一 => 一千零万零一, 二十零 => 二十
-	finalChineseNumber = removeConsecutiveZeros(finalChineseNumber, resolved.baseNumerals[0]);
-	// 删除结尾连续的零：二十零 => 二十
-	if (finalChineseNumber.length > 1 && finalChineseNumber.endsWith(`${resolved.baseNumerals[0]}`)) {
-		finalChineseNumber = finalChineseNumber.slice(0, finalChineseNumber.length - 1);
-	}
+	/* ------------------ 处理整数部分 ------------------ */
+	finalChineseNumber = wholeNumberToZh({
+		wholeNumber: integerPart,
+		resolved,
+	});
 
 	// 一十读作十
 	if (
@@ -68,16 +44,79 @@ export function numberToZh(num: number | string, options: NumberToZhOptions = {}
 		finalChineseNumber = finalChineseNumber.slice(1);
 	}
 
-	/* ----------  上面是整数部分，下面十小数部分 ---------- */
+	/* ------------------ 处理小数部分 ------------------ */
+	const withoutTrailingZeros = clearZero(fractionalPart, "0", ["end"]);
 
-	if (fractionalPart) {
+	if (withoutTrailingZeros) {
 		finalChineseNumber += resolved.decimalPoint;
-		for (const char of fractionalPart) {
+		for (const char of withoutTrailingZeros) {
 			finalChineseNumber += resolved.baseNumerals[+char];
 		}
 	}
 
 	return sign === "-" ? `${resolved.minusSign}${finalChineseNumber}` : finalChineseNumber;
+}
+
+export function wholeNumberToZh({
+	wholeNumber,
+	resolved,
+}: {
+	wholeNumber: string;
+	resolved: ReturnType<typeof resolveOptions>;
+}) {
+	const integerSize = wholeNumber.length;
+	if (!integerSize) {
+		return "";
+	}
+
+	if (integerSize === 1) {
+		return resolved.baseNumerals[+wholeNumber];
+	} else if (integerSize <= 4) {
+		let chineseNumberGroup = "";
+		for (let i = 0; i < wholeNumber.length; i++) {
+			const arabicIndex = wholeNumber.length - 1 - i;
+			const digitsIndex = i % 4;
+			let digits = "";
+			const arabicNumber = wholeNumber.charAt(arabicIndex);
+			const chineseNumber = resolved.baseNumerals[+arabicNumber];
+
+			// 如果值为 0 不加数位
+			if (+arabicNumber > 0) {
+				digits = resolved.digitsList[digitsIndex];
+			}
+			chineseNumberGroup = chineseNumber + digits + chineseNumberGroup;
+		}
+		return clearZero(chineseNumberGroup, resolved.baseNumerals[0], ["middle", "end"]);
+	} else {
+		let chineseNumberGroup = "";
+		const magnitudeCount = Math.floor(integerSize / 4);
+		for (let i = 0; i < magnitudeCount; i++) {
+			const withoutZeroChineseNumber = clearZero(
+				wholeNumberToZh({
+					wholeNumber: i > 0 ? wholeNumber.slice(-(i + 1) * 4, -(i * 4)) : wholeNumber.slice(-4),
+					resolved,
+				}),
+				resolved.baseNumerals[0],
+				["middle", "end"],
+			);
+			if (withoutZeroChineseNumber.length) {
+				chineseNumberGroup = withoutZeroChineseNumber + resolved.magnitudeList[i] + chineseNumberGroup;
+			}
+		}
+
+		const withoutZeroChineseNumber = clearZero(
+			wholeNumberToZh({
+				wholeNumber: wholeNumber.slice(0, integerSize - magnitudeCount * 4),
+				resolved,
+			}),
+			resolved.baseNumerals[0],
+			["middle", "end"],
+		);
+		if (withoutZeroChineseNumber.length) {
+			chineseNumberGroup = withoutZeroChineseNumber + resolved.magnitudeList[magnitudeCount] + chineseNumberGroup;
+		}
+		return chineseNumberGroup;
+	}
 }
 
 export function resolveOptions(options: NumberToZhOptions) {
