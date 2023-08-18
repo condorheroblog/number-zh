@@ -63,7 +63,7 @@ export function wholeNumberToZh({
 }: {
 	wholeNumber: string;
 	resolved: ReturnType<typeof resolveOptions>;
-}) {
+}): string {
 	const integerSize = wholeNumber.length;
 	if (!integerSize) {
 		return "";
@@ -73,8 +73,8 @@ export function wholeNumberToZh({
 		return resolved.baseNumerals[+wholeNumber];
 	} else if (integerSize <= 4) {
 		let chineseNumberGroup = "";
-		for (let i = 0; i < wholeNumber.length; i++) {
-			const arabicIndex = wholeNumber.length - 1 - i;
+		for (let i = 0; i < integerSize; i++) {
+			const arabicIndex = integerSize - 1 - i;
 			const digitsIndex = i % 4;
 			let digits = "";
 			const arabicNumber = wholeNumber.charAt(arabicIndex);
@@ -88,34 +88,27 @@ export function wholeNumberToZh({
 		}
 		return clearZero(chineseNumberGroup, resolved.baseNumerals[0], ["middle", "end"]);
 	} else {
-		let chineseNumberGroup = "";
-		const magnitudeCount = Math.floor(integerSize / 4);
-		for (let i = 0; i < magnitudeCount; i++) {
-			const withoutZeroChineseNumber = clearZero(
+		const magnitudeIndex = Math.floor((integerSize - 1) / 4);
+		const wholeNumberIndex = integerSize % 4;
+		const withoutZeroChineseNumber = wholeNumberToZh({
+			wholeNumber: wholeNumber.slice(0, wholeNumberIndex === 0 ? 4 : wholeNumberIndex),
+			resolved,
+		});
+		if (withoutZeroChineseNumber.length > 0) {
+			return (
+				withoutZeroChineseNumber +
+				resolved.magnitudeList[magnitudeIndex] +
 				wholeNumberToZh({
-					wholeNumber: i > 0 ? wholeNumber.slice(-(i + 1) * 4, -(i * 4)) : wholeNumber.slice(-4),
+					wholeNumber: wholeNumber.slice(wholeNumberIndex === 0 ? 4 : wholeNumberIndex),
 					resolved,
-				}),
-				resolved.baseNumerals[0],
-				["middle", "end"],
+				})
 			);
-			if (withoutZeroChineseNumber.length) {
-				chineseNumberGroup = withoutZeroChineseNumber + resolved.magnitudeList[i] + chineseNumberGroup;
-			}
 		}
 
-		const withoutZeroChineseNumber = clearZero(
-			wholeNumberToZh({
-				wholeNumber: wholeNumber.slice(0, integerSize - magnitudeCount * 4),
-				resolved,
-			}),
-			resolved.baseNumerals[0],
-			["middle", "end"],
-		);
-		if (withoutZeroChineseNumber.length) {
-			chineseNumberGroup = withoutZeroChineseNumber + resolved.magnitudeList[magnitudeCount] + chineseNumberGroup;
-		}
-		return chineseNumberGroup;
+		return wholeNumberToZh({
+			wholeNumber: wholeNumber.slice(wholeNumberIndex === 0 ? 4 : wholeNumberIndex),
+			resolved,
+		});
 	}
 }
 
