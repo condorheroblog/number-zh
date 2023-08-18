@@ -27,7 +27,7 @@ describe(`${numberToZh.name} - CN`, () => {
 		expect(numberToZh(1001_0001)).toBe("一千零一万零一");
 		expect(numberToZh(1001_1001)).toBe("一千零一万一千零一");
 		expect(numberToZh(1100_1001)).toBe("一千一百万一千零一");
-		expect(numberToZh(1200_0000_1234)).toBe("一千二百亿一千二百三十四");
+		expect(numberToZh(1200_0000_1234)).toBe("一千二百亿零一千二百三十四");
 
 		expect(numberToZh(-0.1)).toBe("负零点一");
 		expect(numberToZh(+0.1)).toBe("零点一");

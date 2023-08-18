@@ -88,27 +88,29 @@ export function wholeNumberToZh({
 		}
 		return clearZero(chineseNumberGroup, resolved.baseNumerals[0], ["middle", "end"]);
 	} else {
+		let chineseNumberGroup = "";
 		const magnitudeIndex = Math.floor((integerSize - 1) / 4);
 		const wholeNumberIndex = integerSize % 4;
-		const withoutZeroChineseNumber = wholeNumberToZh({
+		const aboveDigitalNumber = wholeNumberToZh({
 			wholeNumber: wholeNumber.slice(0, wholeNumberIndex === 0 ? 4 : wholeNumberIndex),
 			resolved,
 		});
-		if (withoutZeroChineseNumber.length > 0) {
-			return (
-				withoutZeroChineseNumber +
-				resolved.magnitudeList[magnitudeIndex] +
-				wholeNumberToZh({
-					wholeNumber: wholeNumber.slice(wholeNumberIndex === 0 ? 4 : wholeNumberIndex),
-					resolved,
-				})
-			);
-		}
-
-		return wholeNumberToZh({
-			wholeNumber: wholeNumber.slice(wholeNumberIndex === 0 ? 4 : wholeNumberIndex),
+		const belowDigitalSlice = wholeNumber.slice(wholeNumberIndex === 0 ? 4 : wholeNumberIndex);
+		const belowDigitalNumber = wholeNumberToZh({
+			wholeNumber: belowDigitalSlice,
 			resolved,
 		});
+
+		if (aboveDigitalNumber.length > 0) {
+			chineseNumberGroup =
+				aboveDigitalNumber +
+				resolved.magnitudeList[magnitudeIndex] +
+				(belowDigitalSlice.charAt(0) === "0" ? resolved.baseNumerals[0] : "") +
+				belowDigitalNumber;
+		} else {
+			chineseNumberGroup = belowDigitalNumber;
+		}
+		return clearZero(chineseNumberGroup, resolved.baseNumerals[0], ["middle", "end"]);
 	}
 }
 
