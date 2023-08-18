@@ -24,10 +24,20 @@ export function numberToZh(num: number | string, options: NumberToZhOptions = {}
 	const { sign, integerPart, fractionalPart } = parseRationalNumber(numString);
 
 	const integerSize = integerPart.length;
+
 	// 整数部分边界检测
-	if (resolved.digitsList.length * resolved.magnitudeList.length < integerSize) {
-		// \nThe integer part exceeds the maximum counting unit that can be represented, please set a larger magnitude
-		throw new Error(`整数部分超出能表示的最大计数单位，请设置更大的数级（magnitude）`);
+	const errorMessage = `整数部分超出能表示的最大计数单位，请设置更大的数级（magnitude）`;
+	if (resolved.magnitudeList.length > 2) {
+		if (
+			!resolved.repeatChar &&
+			2 * 4 + resolved.digitsAboveTenThousand * (resolved.magnitudeList.length - 2) < integerSize
+		) {
+			throw new Error(errorMessage);
+		}
+	} else {
+		if (resolved.digitsList.length * resolved.magnitudeList.length < integerSize) {
+			throw new Error(errorMessage);
+		}
 	}
 
 	/* ------------------ 处理整数部分 ------------------ */
@@ -42,6 +52,23 @@ export function numberToZh(num: number | string, options: NumberToZhOptions = {}
 		finalChineseNumber.startsWith(`${resolved.baseNumerals[1]}${resolved.digitsList[1]}`)
 	) {
 		finalChineseNumber = finalChineseNumber.slice(1);
+	}
+
+	/* ------------------ 万万｜亿亿 ------------------ */
+	if (resolved.repeatChar) {
+		let repeatString = "";
+		if (resolved.repeatChar === "WW") {
+			repeatString = resolved.magnitudeList[1] + resolved.magnitudeList[1];
+		}
+		if (resolved.repeatChar === "YY") {
+			repeatString = resolved.magnitudeList[2];
+		}
+		const firstYiIndex = finalChineseNumber.lastIndexOf(resolved.magnitudeList[2]);
+		if (firstYiIndex !== -1) {
+			finalChineseNumber =
+				finalChineseNumber.slice(0, firstYiIndex).replace(new RegExp(resolved.magnitudeList[2], "g"), repeatString) +
+				finalChineseNumber.slice(firstYiIndex);
+		}
 	}
 
 	/* ------------------ 处理小数部分 ------------------ */
@@ -89,8 +116,14 @@ export function wholeNumberToZh({
 		return clearZero(chineseNumberGroup, resolved.baseNumerals[0], ["middle", "end"]);
 	} else {
 		let chineseNumberGroup = "";
+		let wholeNumberIndex = integerSize % 4;
 		const magnitudeIndex = Math.floor((integerSize - 1) / 4);
-		const wholeNumberIndex = integerSize % 4;
+		let numberMagnitude = resolved.magnitudeList[magnitudeIndex];
+		if (!numberMagnitude) {
+			numberMagnitude = resolved.magnitudeList[resolved.magnitudeList.length - 1];
+			wholeNumberIndex = integerSize - 8;
+		}
+
 		const aboveDigitalNumber = wholeNumberToZh({
 			wholeNumber: wholeNumber.slice(0, wholeNumberIndex === 0 ? 4 : wholeNumberIndex),
 			resolved,
@@ -104,7 +137,7 @@ export function wholeNumberToZh({
 		if (aboveDigitalNumber.length > 0) {
 			chineseNumberGroup =
 				aboveDigitalNumber +
-				resolved.magnitudeList[magnitudeIndex] +
+				numberMagnitude +
 				(belowDigitalSlice.charAt(0) === "0" ? resolved.baseNumerals[0] : "") +
 				belowDigitalNumber;
 		} else {
@@ -123,8 +156,28 @@ export function resolveOptions(options: NumberToZhOptions) {
 	const language = options.language ?? "zh-CN-lowercase";
 	const skipOneBeforeTen = options.skipOneBeforeTen ?? false;
 
+	let digitsAboveTenThousand = options.digitsAboveTenThousand;
+	let repeatChar = options.repeatChar;
+
+	if (["zh-CN-lowercase", "zh-CN-uppercase"].includes(language)) {
+		digitsAboveTenThousand = digitsAboveTenThousand ?? 8;
+		repeatChar = repeatChar ?? "WW";
+	} else {
+		digitsAboveTenThousand = digitsAboveTenThousand ?? 4;
+		repeatChar = repeatChar ?? false;
+	}
+
+	if (digitsAboveTenThousand === "Octal") {
+		digitsAboveTenThousand = 8;
+	}
+	if (digitsAboveTenThousand === "Quaternary") {
+		digitsAboveTenThousand = 4;
+	}
+
 	return {
 		skipOneBeforeTen,
+		digitsAboveTenThousand,
+		repeatChar,
 		...resources[language],
 	};
 }

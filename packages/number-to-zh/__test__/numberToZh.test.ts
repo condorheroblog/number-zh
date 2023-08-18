@@ -122,9 +122,9 @@ describe(`${numberToZh.name} - TW(HK)`, () => {
 
 describe(`${numberToZh.name} - count unit exceeded`, () => {
 	test(`need a larger magnitude`, async ({ expect }) => {
-		expect(() => numberToZh(1.23456789e20)).toThrowErrorMatchingInlineSnapshot(
-			'"整数部分超出能表示的最大计数单位，请设置更大的数级（magnitude）"',
-		);
+		expect(() =>
+			numberToZh(1.23456789e29, { digitsAboveTenThousand: 4, repeatChar: false }),
+		).toThrowErrorMatchingInlineSnapshot('"整数部分超出能表示的最大计数单位，请设置更大的数级（magnitude）"');
 	});
 	test(`provide a larger magnitude`, async ({ expect }) => {
 		RESOURCES[languages[2]].magnitudeList.push("京");
@@ -156,5 +156,51 @@ describe(`${numberToZh.name} - skipOneBeforeTen`, () => {
 		expect(numberToZh(10_0101, options)).toBe("十万零一百零一");
 		expect(numberToZh(10_1001, options)).toBe("十万一千零一");
 		expect(numberToZh(10_1010, options)).toBe("十万一千零一十");
+	});
+});
+
+describe(`${numberToZh.name} - digitsAboveTenThousand`, () => {
+	test(`digitsAboveTenThousand is 4`, async ({ expect }) => {
+		expect(
+			numberToZh(9200_1111_0000_1234, {
+				language: "zh-CN-lowercase",
+				digitsAboveTenThousand: 4,
+				resources: {
+					"zh-CN-lowercase": {
+						...RESOURCES["zh-CN-lowercase"],
+						magnitudeList: [...RESOURCES["zh-CN-lowercase"].magnitudeList, "兆"],
+					},
+				},
+			}),
+		).toBe("九千二百兆一千一百一十一亿零一千二百三十四");
+	});
+
+	test(`digitsAboveTenThousand is 8`, async ({ expect }) => {
+		expect(numberToZh(12_0000_0000_1234)).toBe("一十二万亿零一千二百三十四");
+		expect(numberToZh(9200_1111_0000_1234)).toBe("九千二百万一千一百一十一亿零一千二百三十四");
+		expect(numberToZh(1_2222_3333_0000_1234)).toBe("一万万二千二百二十二万三千三百三十三亿零一千二百三十四");
+		expect(numberToZh(1_2222_3333_0000_1234, { repeatChar: "YY" })).toBe(
+			"一亿二千二百二十二万三千三百三十三亿零一千二百三十四",
+		);
+		expect(numberToZh(1e16, { repeatChar: "YY" })).toBe("一亿亿");
+		expect(numberToZh(1e16, { repeatChar: "WW" })).toBe("一万万亿");
+		expect(numberToZh("77776666555500001234")).toBe(
+			"七千七百七十七万万六千六百六十六万五千五百五十五亿零一千二百三十四",
+		);
+
+		// TODO: 单纯的八位进制实现
+		// expect(
+		// 	numberToZh("54000300020000001", {
+		// 		language: "zh-CN-lowercase",
+		// 		digitsAboveTenThousand: 8,
+		// 		repeatChar: false,
+		// 		resources: {
+		// 			"zh-CN-lowercase": {
+		// 				...RESOURCES["zh-CN-lowercase"],
+		// 				magnitudeList: [...RESOURCES["zh-CN-lowercase"].magnitudeList, "京"],
+		// 			},
+		// 		},
+		// 	}),
+		// ).toBe("五千五百五十五亿四千万三千兆二千万零一");
 	});
 });
