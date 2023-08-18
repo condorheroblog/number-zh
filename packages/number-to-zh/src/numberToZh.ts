@@ -41,10 +41,46 @@ export function numberToZh(num: number | string, options: NumberToZhOptions = {}
 	}
 
 	/* ------------------ 处理整数部分 ------------------ */
-	finalChineseNumber = wholeNumberToZh({
-		wholeNumber: integerPart,
-		resolved,
-	});
+	if (integerSize <= 12 || resolved.digitsAboveTenThousand === 4) {
+		finalChineseNumber = wholeNumberToZh({
+			wholeNumber: integerPart,
+			resolved,
+		});
+	} else {
+		finalChineseNumber = wholeNumberToZh({
+			wholeNumber: integerPart.slice(-8),
+			resolved,
+		});
+
+		finalChineseNumber = (integerPart.slice(-8).charAt(0) === "0" ? resolved.baseNumerals[0] : "") + finalChineseNumber;
+
+		// big numbers
+		const step = resolved.digitsAboveTenThousand;
+		const octalDigitsNumbers = integerPart.slice(0, integerSize - step);
+
+		for (let i = octalDigitsNumbers.length; i > 0; i -= step) {
+			const endIndex = i;
+			const startIndex = Math.max(0, i - step);
+			const chunk = octalDigitsNumbers.slice(startIndex, endIndex);
+			const index = Math.ceil(octalDigitsNumbers.length / step) - Math.ceil(i / step);
+			let chineseNumberGroup = wholeNumberToZh({
+				wholeNumber: chunk,
+				resolved,
+			});
+
+			if (resolved.repeatChar) {
+				chineseNumberGroup = chineseNumberGroup + resolved.magnitudeList[2];
+			} else {
+				if (chineseNumberGroup.length > 0) {
+					chineseNumberGroup = chineseNumberGroup + resolved.magnitudeList[index + 2];
+				} else {
+					chineseNumberGroup = resolved.baseNumerals[0];
+				}
+			}
+			finalChineseNumber = chineseNumberGroup + finalChineseNumber;
+		}
+		finalChineseNumber = clearZero(finalChineseNumber, resolved.baseNumerals[0], ["middle", "end"]);
+	}
 
 	// 一十读作十
 	if (
@@ -56,18 +92,14 @@ export function numberToZh(num: number | string, options: NumberToZhOptions = {}
 
 	/* ------------------ 万万｜亿亿 ------------------ */
 	if (resolved.repeatChar) {
-		let repeatString = "";
 		if (resolved.repeatChar === "WW") {
-			repeatString = resolved.magnitudeList[1] + resolved.magnitudeList[1];
-		}
-		if (resolved.repeatChar === "YY") {
-			repeatString = resolved.magnitudeList[2];
-		}
-		const firstYiIndex = finalChineseNumber.lastIndexOf(resolved.magnitudeList[2]);
-		if (firstYiIndex !== -1) {
-			finalChineseNumber =
-				finalChineseNumber.slice(0, firstYiIndex).replace(new RegExp(resolved.magnitudeList[2], "g"), repeatString) +
-				finalChineseNumber.slice(firstYiIndex);
+			const repeatString = resolved.magnitudeList[1] + resolved.magnitudeList[1];
+			const firstYiIndex = finalChineseNumber.lastIndexOf(resolved.magnitudeList[2]);
+			if (firstYiIndex !== -1) {
+				finalChineseNumber =
+					finalChineseNumber.slice(0, firstYiIndex).replace(new RegExp(resolved.magnitudeList[2], "g"), repeatString) +
+					finalChineseNumber.slice(firstYiIndex);
+			}
 		}
 	}
 
@@ -116,13 +148,9 @@ export function wholeNumberToZh({
 		return clearZero(chineseNumberGroup, resolved.baseNumerals[0], ["middle", "end"]);
 	} else {
 		let chineseNumberGroup = "";
-		let wholeNumberIndex = integerSize % 4;
+		const wholeNumberIndex = integerSize % 4;
 		const magnitudeIndex = Math.floor((integerSize - 1) / 4);
-		let numberMagnitude = resolved.magnitudeList[magnitudeIndex];
-		if (!numberMagnitude) {
-			numberMagnitude = resolved.magnitudeList[resolved.magnitudeList.length - 1];
-			wholeNumberIndex = integerSize - 8;
-		}
+		const numberMagnitude = resolved.magnitudeList[magnitudeIndex];
 
 		const aboveDigitalNumber = wholeNumberToZh({
 			wholeNumber: wholeNumber.slice(0, wholeNumberIndex === 0 ? 4 : wholeNumberIndex),

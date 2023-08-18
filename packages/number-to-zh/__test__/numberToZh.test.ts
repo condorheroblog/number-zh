@@ -188,19 +188,18 @@ describe(`${numberToZh.name} - digitsAboveTenThousand`, () => {
 			"七千七百七十七万万六千六百六十六万五千五百五十五亿零一千二百三十四",
 		);
 
-		// TODO: 单纯的八位进制实现
-		// expect(
-		// 	numberToZh("54000300020000001", {
-		// 		language: "zh-CN-lowercase",
-		// 		digitsAboveTenThousand: 8,
-		// 		repeatChar: false,
-		// 		resources: {
-		// 			"zh-CN-lowercase": {
-		// 				...RESOURCES["zh-CN-lowercase"],
-		// 				magnitudeList: [...RESOURCES["zh-CN-lowercase"].magnitudeList, "京"],
-		// 			},
-		// 		},
-		// 	}),
-		// ).toBe("五千五百五十五亿四千万三千兆二千万零一");
+		expect(
+			numberToZh("54000300020000001", {
+				language: "zh-CN-lowercase",
+				digitsAboveTenThousand: 8,
+				repeatChar: false,
+				resources: {
+					"zh-CN-lowercase": {
+						...RESOURCES["zh-CN-lowercase"],
+						magnitudeList: [...RESOURCES["zh-CN-lowercase"].magnitudeList, "京"],
+					},
+				},
+			}),
+		).toBe("五京四千万三千亿二千万零一");
 	});
 });
