@@ -172,31 +172,30 @@ Type: `number | string`
 Type: `"zh-CN-lowercase" | "zh-CN-uppercase" | "zh-TW-lowercase" | "zh-TW-uppercase" | "zh-HK-lowercase" | "zh-HK-uppercase"`
 Default: `"zh-CN-lowercase"`
 
-阿拉伯数字转为对应的中文数字。
+阿拉伯数字转为对应的中文数字，HK 和 TW 代表的都是繁体中文。
 
 ##### resources
 
 Type: `object`
 
-自定义设置中文语境下的数级、数位、小数点已经零到九。
+自定义设置中文语境下的数级、数位、小数点以及数字零到九，可通过 `import { RESOURCES } from "number-to-zh";` 查看。
 
 ##### skipOneBeforeTen
 
 Type: `boolean`
 Default: `false`
 
-控制一十的读作十
+控制一十是否读作十。
 
 ##### repeatChar
 
 Type: `false | "WW" | "YY"`
 Default: `"WW"`
 
-启用万亿情况下，重复的数级
-
+启用万亿情况下，重复的数级，`WW` 表示万万，`YY` 表示亿亿， `false` 表示万亿之后正常进入下一个数级。
 
 ##### digitsAboveTenThousand
 
 Type: `4 | "Quaternary" | 8 | "Octal"`
 
-万位以上的进制，简体中文默认 8，繁体中文默认 4
+万位以上的进制，简体中文默认 8，繁体中文默认 4。
