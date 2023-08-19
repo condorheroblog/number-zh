@@ -154,3 +154,49 @@ numberToZh(1000_0000_0000_0000, {
 	digitsAboveTenThousand: 8,
 })
 ```
+
+## API
+
+### numberToZh(num, options?)
+
+#### num
+
+Type: `number | string`
+
+需要转换的数字，当数字是 Number 时，需要注意 JavaScript 语言本身精度丢失问题。
+
+#### options
+
+##### language
+
+Type: `"zh-CN-lowercase" | "zh-CN-uppercase" | "zh-TW-lowercase" | "zh-TW-uppercase" | "zh-HK-lowercase" | "zh-HK-uppercase"`
+Default: `"zh-CN-lowercase"`
+
+阿拉伯数字转为对应的中文数字。
+
+##### resources
+
+Type: `object`
+
+自定义设置中文语境下的数级、数位、小数点已经零到九。
+
+##### skipOneBeforeTen
+
+Type: `boolean`
+Default: `false`
+
+控制一十的读作十
+
+##### repeatChar
+
+Type: `false | "WW" | "YY"`
+Default: `"WW"`
+
+启用万亿情况下，重复的数级
+
+
+##### digitsAboveTenThousand
+
+Type: `4 | "Quaternary" | 8 | "Octal"`
+
+万位以上的进制，简体中文默认 8，繁体中文默认 4

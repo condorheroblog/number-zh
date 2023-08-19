@@ -23,4 +23,4 @@ numberToZh(1000_0001);				// 一千万零一
 numberToZh("12345678");				// 一千二百三十四万五千六百七十八
 ```
 
-详细使用点击 [number-to-zh](https://github.com/condorheroblog/number-zh/tree/main/packages/number-to-zh) 查看文档文档。
+详细使用点击 [number-to-zh](https://github.com/condorheroblog/number-zh/tree/main/packages/number-to-zh) 查看文档。

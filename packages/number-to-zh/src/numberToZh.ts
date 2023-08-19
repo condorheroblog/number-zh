@@ -9,7 +9,6 @@ import {
 	scientificToNumber,
 } from "../../core/src";
 
-export default numberToZh;
 export function numberToZh(num: number | string, options: NumberToZhOptions = {}) {
 	let numString = num.toString();
 	if (!isValidNumber(num)) {
