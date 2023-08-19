@@ -11,10 +11,19 @@ describe(`${numberToZh.name} - CN`, () => {
 		expect(numberToZh(0)).toBe("零");
 		expect(numberToZh(+0)).toBe("零");
 		expect(numberToZh(-0)).toBe("零");
+		expect(numberToZh("-0.")).toBe("零");
 
-		expect(numberToZh(-0)).toBe("零");
-
+		expect(numberToZh(0o1)).toBe("一");
 		expect(numberToZh(1)).toBe("一");
+		expect(numberToZh("0000001")).toBe("一");
+		expect(numberToZh(101)).toBe("一百零一");
+		expect(numberToZh(1001)).toBe("一千零一");
+		expect(numberToZh(1_0001)).toBe("一万零一");
+		expect(numberToZh(10_0010)).toBe("一十万零一十");
+		expect(numberToZh(10_0100)).toBe("一十万零一百");
+		expect(numberToZh(10_1000)).toBe("一十万一千");
+		expect(numberToZh(10_0000_1000)).toBe("一十亿零一千");
+		expect(numberToZh(10_1000_1000)).toBe("一十亿一千万一千");
 		expect(numberToZh(10)).toBe("一十");
 		expect(numberToZh(20)).toBe("二十");
 		expect(numberToZh(2200)).toBe("二千二百");
@@ -31,11 +40,13 @@ describe(`${numberToZh.name} - CN`, () => {
 
 		expect(numberToZh(-0.1)).toBe("负零点一");
 		expect(numberToZh(+0.1)).toBe("零点一");
+		expect(numberToZh("00.1")).toBe("零点一");
 		expect(numberToZh("-0.1")).toBe("负零点一");
 		expect(numberToZh("-0.100000")).toBe("负零点一");
 		expect(numberToZh(0.234343)).toBe("零点二三四三四三");
 		expect(numberToZh(12.12)).toBe("一十二点一二");
 
+		expect(numberToZh(-2e-6)).toBe("负零点零零零零零二");
 		expect(numberToZh(-1e-3)).toBe("负零点零零一");
 		expect(numberToZh(1.23456789e-12)).toBe("零点零零零零零零零零零零零一二三四五六七八九");
 	});
@@ -84,7 +95,7 @@ describe(`${numberToZh.name} - CN`, () => {
 	test(`mismatch`, async ({ expect }) => {
 		const options = { language: languages[1], resources: {} };
 		expect(() => numberToZh("0", options)).toThrowErrorMatchingInlineSnapshot(
-			'"language does not appear in resources"',
+			'"zh-CN-uppercase does not appear in resources"',
 		);
 	});
 });
@@ -156,6 +167,7 @@ describe(`${numberToZh.name} - skipOneBeforeTen`, () => {
 		expect(numberToZh(10_0101, options)).toBe("十万零一百零一");
 		expect(numberToZh(10_1001, options)).toBe("十万一千零一");
 		expect(numberToZh(10_1010, options)).toBe("十万一千零一十");
+		expect(numberToZh(1000_0000_1010, options)).toBe("一千亿零一千零一十");
 	});
 });
 
@@ -179,6 +191,7 @@ describe(`${numberToZh.name} - digitsAboveTenThousand`, () => {
 		expect(numberToZh(12_0000_0000_1234)).toBe("一十二万亿零一千二百三十四");
 		expect(numberToZh(9200_1111_0000_1234)).toBe("九千二百万一千一百一十一亿零一千二百三十四");
 		expect(numberToZh(1_2222_3333_0000_1234)).toBe("一万万二千二百二十二万三千三百三十三亿零一千二百三十四");
+		expect(numberToZh(19.011e16)).toBe("一十九万万零一百一十万亿");
 		expect(numberToZh(1_2222_3333_0000_1234, { repeatChar: "YY" })).toBe(
 			"一亿二千二百二十二万三千三百三十三亿零一千二百三十四",
 		);
@@ -196,10 +209,24 @@ describe(`${numberToZh.name} - digitsAboveTenThousand`, () => {
 				resources: {
 					"zh-CN-lowercase": {
 						...RESOURCES["zh-CN-lowercase"],
-						magnitudeList: [...RESOURCES["zh-CN-lowercase"].magnitudeList, "京"],
+						magnitudeList: ["", "万", "亿", "京"],
 					},
 				},
 			}),
 		).toBe("五京四千万三千亿二千万零一");
+
+		expect(
+			numberToZh("4000000000000001", {
+				language: "zh-TW-uppercase",
+				digitsAboveTenThousand: 8,
+			}),
+		).toBe("肆仟萬億零壹");
+		expect(
+			numberToZh("54000000000000001", {
+				language: "zh-TW-uppercase",
+				digitsAboveTenThousand: 8,
+				repeatChar: "WW",
+			}),
+		).toBe("伍萬萬肆仟萬億零壹");
 	});
 });

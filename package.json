@@ -17,6 +17,8 @@
 	"scripts": {
 		"postinstall": "simple-git-hooks",
 		"prepublishOnly": "nr build",
+		"dev:number-to-zh": "esno packages/number-to-zh/src/numberToZh.ts",
+		"dev:zh-to-number": "esno packages/zh-to-number/src/zhToNumber.ts",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
 		"format": "prettier --write .",

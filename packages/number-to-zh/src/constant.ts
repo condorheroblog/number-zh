@@ -1,13 +1,13 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/getNumberingSystems#supported_numbering_system_types
 
 export const ZH_CN_LOWER_CASE_DIGITS_LIST = ["", "十", "百", "千"];
-export const ZH_CN_LOWER_CASE_MAGNITUDE_LIST = ["", "万", "亿"];
+export const ZH_CN_LOWER_CASE_MAGNITUDE_LIST = ["", "万", "亿", "兆"];
 export const ZH_CN_LOWER_CASE_MINUS_SIGN = "负";
 export const ZH_CN_LOWER_CASE_DECIMAL_POINT = "点";
 export const ZH_CN_LOWER_CASE_BASE_CHINESE_NUMERALS = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
 
 export const ZH_CN_UPPER_CASE_DIGITS_LIST = ["", "拾", "佰", "仟"];
-export const ZH_CN_UPPER_CASE_MAGNITUDE_LIST = ["", "万", "亿"];
+export const ZH_CN_UPPER_CASE_MAGNITUDE_LIST = ["", "万", "亿", "兆"];
 export const ZH_CN_UPPER_CASE_MINUS_SIGN = "负";
 export const ZH_CN_UPPER_CASE_DECIMAL_POINT = "点";
 export const ZH_CN_UPPER_CASE_BASE_CHINESE_NUMERALS = ["零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"];
