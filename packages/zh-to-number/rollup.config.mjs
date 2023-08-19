@@ -2,12 +2,15 @@
 import { readFileSync } from "node:fs";
 import esbuild from "rollup-plugin-esbuild";
 import { dts } from "rollup-plugin-dts";
-
-// https://github.com/tc39/proposal-import-attributes
-// import pkg from "./package.json" with { type: "json"};
+import json from "@rollup/plugin-json";
 
 const pkg = JSON.parse(readFileSync("./package.json", "utf-8"));
-const external = [...Object.keys(pkg.devDependencies), ...Object.keys(pkg.peerDependencies)];
+const banner = `/**
+ * ${pkg.name} ${pkg.version}
+ * Author ${pkg.author}
+ * License ${pkg.license}
+ * Homepage ${pkg.homepage}
+ */\n`;
 
 /**
  * @type {import('rollup').RollupOptions}
@@ -15,8 +18,7 @@ const external = [...Object.keys(pkg.devDependencies), ...Object.keys(pkg.peerDe
 export const rollupConfig = [
 	{
 		input: "./src/index.ts",
-		external,
-		plugins: [esbuild()],
+		plugins: [json(), esbuild()],
 		output: [
 			{
 				file: "./dist/index.cjs",
@@ -29,13 +31,14 @@ export const rollupConfig = [
 			{
 				file: "./dist/zh-to-number.global.js",
 				format: "iife",
+				banner,
 				name: "__ZH_TO_NUMBER__",
 			},
 		],
 	},
 	{
 		input: "./src/index.ts",
-		plugins: [dts()],
+		plugins: [json(), dts()],
 		output: {
 			file: "./dist/index.d.ts",
 			format: "esm",
