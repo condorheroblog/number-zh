@@ -152,6 +152,7 @@ describe(`${numberToZh.name} - count unit exceeded`, () => {
 describe(`${numberToZh.name} - skipOneBeforeTen`, () => {
 	test(`skipOneBeforeTen is false`, async ({ expect }) => {
 		expect(numberToZh(10)).toBe("一十");
+		expect(numberToZh(-10)).toBe("负一十");
 		expect(numberToZh(20)).toBe("二十");
 		expect(numberToZh(10_0001)).toBe("一十万零一");
 		expect(numberToZh(10_0101)).toBe("一十万零一百零一");
@@ -162,6 +163,7 @@ describe(`${numberToZh.name} - skipOneBeforeTen`, () => {
 	test(`skipOneBeforeTen is true`, async ({ expect }) => {
 		const options = { skipOneBeforeTen: true };
 		expect(numberToZh(10, options)).toBe("十");
+		expect(numberToZh(-10, options)).toBe("负十");
 		expect(numberToZh(20, options)).toBe("二十");
 		expect(numberToZh(10_0001, options)).toBe("十万零一");
 		expect(numberToZh(10_0101, options)).toBe("十万零一百零一");

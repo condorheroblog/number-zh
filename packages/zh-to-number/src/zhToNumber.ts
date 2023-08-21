@@ -20,8 +20,15 @@ export function zhToNumber(inputNumberString: string, options: ZhToNumberOptions
 		const isChineseNumerals = checkCharacters(inputNumberString, comparisonString.join(","));
 		if (isChineseNumerals) {
 			// 十 => 一十
-			if (inputNumberString.startsWith(resolved.digitsList[1])) {
+			if (inputNumberString.startsWith(`${resolved.digitsList[1]}`)) {
 				inputNumberString = resolved.baseNumerals[1] + inputNumberString;
+			} else {
+				if (
+					inputNumberString.startsWith(`${positive}${resolved.digitsList[1]}`) ||
+					inputNumberString.startsWith(`${resolved.minusSign}${resolved.digitsList[1]}`)
+				) {
+					inputNumberString = inputNumberString.charAt(0) + resolved.baseNumerals[1] + inputNumberString.slice(1);
+				}
 			}
 			const { sign, integerPart, fractionalPart } = parseZhNumber(
 				inputNumberString,
@@ -29,33 +36,36 @@ export function zhToNumber(inputNumberString: string, options: ZhToNumberOptions
 				resolved.decimalPoint,
 			);
 			let arabicNumber = "";
-			let currentNumber = "";
+			let magnitudeNumber = "";
+			let digitsNumber = "";
 
 			for (let i = 0; i < integerPart.length; i += 1) {
 				const currentChar = integerPart[i];
 				const charIndex = resolved.baseNumerals.indexOf(currentChar);
 				if (charIndex > -1) {
-					currentNumber = String(charIndex);
+					digitsNumber = String(charIndex);
 				} else {
 					const digitsIndex = resolved.digitsList.indexOf(currentChar);
-					let magnitudeString = "";
 					if (digitsIndex > -1) {
-						currentNumber += new Array(digitsIndex + 1).join("0");
+						digitsNumber += new Array(digitsIndex + 1).join("0");
+						magnitudeNumber = stringAddition(magnitudeNumber, digitsNumber);
+						digitsNumber = "";
 					} else {
 						const magnitudeIndex = resolved.magnitudeList.indexOf(currentChar);
 						if (magnitudeIndex > -1) {
-							magnitudeString = new Array(1 + magnitudeIndex * 4).join("0");
+							magnitudeNumber = stringAddition(magnitudeNumber, digitsNumber);
+							magnitudeNumber += new Array(1 + magnitudeIndex * 4).join("0");
+							arabicNumber = stringAddition(arabicNumber, magnitudeNumber);
+							magnitudeNumber = "";
+							digitsNumber = "";
 						}
 					}
-					arabicNumber = stringAddition(arabicNumber, currentNumber) + magnitudeString;
-					currentNumber = "";
 				}
 			}
 
-			if (currentNumber.length > 0) {
-				arabicNumber = stringAddition(arabicNumber, currentNumber);
-				currentNumber = "";
-			}
+			arabicNumber = stringAddition(arabicNumber, stringAddition(magnitudeNumber, digitsNumber));
+			digitsNumber = "";
+			magnitudeNumber = "";
 
 			/* ------------------ 处理小数部分 ------------------ */
 
@@ -74,7 +84,3 @@ export function zhToNumber(inputNumberString: string, options: ZhToNumberOptions
 		throw new Error("请提供一个字符串");
 	}
 }
-
-const result = zhToNumber("正一千二百三十四万五千六百七十八点八七六五");
-
-console.log(result);
