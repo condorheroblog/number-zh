@@ -23,10 +23,12 @@ export const rollupConfig = [
 			{
 				file: "./dist/index.cjs",
 				format: "cjs",
+				banner,
 			},
 			{
 				file: "./dist/index.mjs",
 				format: "esm",
+				banner,
 			},
 			{
 				file: "./dist/zh-to-number.global.js",
