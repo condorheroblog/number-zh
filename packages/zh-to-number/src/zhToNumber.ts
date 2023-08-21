@@ -19,6 +19,10 @@ export function zhToNumber(inputNumberString: string, options: ZhToNumberOptions
 		];
 		const isChineseNumerals = checkCharacters(inputNumberString, comparisonString.join(","));
 		if (isChineseNumerals) {
+			// 十 => 一十
+			if (inputNumberString.startsWith(resolved.digitsList[1])) {
+				inputNumberString = resolved.baseNumerals[1] + inputNumberString;
+			}
 			const { sign, integerPart, fractionalPart } = parseZhNumber(
 				inputNumberString,
 				resolved.minusSign,

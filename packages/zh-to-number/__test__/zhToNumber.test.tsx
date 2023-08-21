@@ -17,4 +17,13 @@ describe(`${zhToNumber.name} main`, () => {
 		expect(zhToNumber("正一千二百三十四万五千六百七十八点八七六五")).toBe("12345678.8765");
 		expect(zhToNumber("负一千二百三十四万五千六百七十八点八七六五")).toBe("-12345678.8765");
 	});
+
+	test(`${zhToNumber.name} 一十 => 十`, async ({ expect }) => {
+		expect(zhToNumber("二十")).toBe("20");
+		expect(zhToNumber("十")).toBe("10");
+		expect(zhToNumber("十万零一")).toBe("100001");
+		expect(zhToNumber("十万零一百零一")).toBe("100101");
+		expect(zhToNumber("十万一千零一")).toBe("101001");
+		expect(zhToNumber("十万一千零一十")).toBe("101010");
+	});
 });
