@@ -30,19 +30,29 @@ export function zhToNumber(inputNumberString: string, options: ZhToNumberOptions
 					inputNumberString = inputNumberString.charAt(0) + resolved.baseNumerals[1] + inputNumberString.slice(1);
 				}
 			}
+
+			// +0, 0, -0, return +0
+			if (inputNumberString === `${resolved.minusSign}${resolved.baseNumerals[0]}`) {
+				inputNumberString = inputNumberString.slice(1);
+			}
+
 			const { sign, integerPart, fractionalPart } = parseZhNumber(
 				inputNumberString,
 				resolved.minusSign,
 				resolved.decimalPoint,
 			);
+
 			let arabicNumber = "";
 			let magnitudeNumber = "";
 			let digitsNumber = "";
+			let currentMagnitudeIndex = Infinity;
 
 			for (let i = 0; i < integerPart.length; i += 1) {
+				//  数值
 				const currentChar = integerPart[i];
 				const charIndex = resolved.baseNumerals.indexOf(currentChar);
 				if (charIndex > -1) {
+					// 存储有数位的数值
 					digitsNumber = String(charIndex);
 				} else {
 					const digitsIndex = resolved.digitsList.indexOf(currentChar);
@@ -54,8 +64,14 @@ export function zhToNumber(inputNumberString: string, options: ZhToNumberOptions
 						const magnitudeIndex = resolved.magnitudeList.indexOf(currentChar);
 						if (magnitudeIndex > -1) {
 							magnitudeNumber = stringAddition(magnitudeNumber, digitsNumber);
-							magnitudeNumber += new Array(1 + magnitudeIndex * 4).join("0");
-							arabicNumber = stringAddition(arabicNumber, magnitudeNumber);
+							const multipleZero = new Array(1 + magnitudeIndex * 4).join("0");
+
+							if (currentMagnitudeIndex <= magnitudeIndex) {
+								arabicNumber = stringAddition(arabicNumber, magnitudeNumber) + multipleZero;
+							} else {
+								arabicNumber = stringAddition(arabicNumber, `${magnitudeNumber}${multipleZero}`);
+							}
+							currentMagnitudeIndex = magnitudeIndex;
 							magnitudeNumber = "";
 							digitsNumber = "";
 						}
