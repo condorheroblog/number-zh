@@ -70,15 +70,15 @@ numberToZh(1000_0000_0000_0000);		// 一千万亿
 默认支持：
 
 ```ts
-numberToZh(1_0000_0000_0000_0000);	// 一万万亿
+numberToZh(1_0000_0000_0000_0000); // 一万万亿
 ```
 
 #### 亿亿
 
- 指定 repeatChar 的参数为——`YY`。
+指定 repeatChar 的参数为——`YY`。
 
 ```ts
-numberToZh(1_0000_0000_0000_0000, { repeatChar: "YY" });	// 一亿亿
+numberToZh(1_0000_0000_0000_0000, { repeatChar: "YY" }); // 一亿亿
 ```
 
 ### 自定义数级
@@ -152,7 +152,7 @@ numberToZh(1_0000_0000_0000_0000, options);			// 一京
 numberToZh(1000_0000_0000_0000, {
 	language: "zh-TW-lowercase",
 	digitsAboveTenThousand: 8,
-})
+});
 ```
 
 ## API
@@ -163,7 +163,7 @@ numberToZh(1000_0000_0000_0000, {
 
 Type: `number | string`
 
-需要转换的数字，当数字是 Number 时，需要注意 JavaScript 语言本身精度丢失问题。
+需要转换的阿拉伯数字，当数字是 Number 时，需要注意 JavaScript 语言本身精度丢失问题。
 
 #### options
 
@@ -172,11 +172,13 @@ Type: `number | string`
 Type: `"zh-CN-lowercase" | "zh-CN-uppercase" | "zh-TW-lowercase" | "zh-TW-uppercase" | "zh-HK-lowercase" | "zh-HK-uppercase"`
 Default: `"zh-CN-lowercase"`
 
-阿拉伯数字转为对应的中文数字，HK 和 TW 代表的都是繁体中文。
+阿拉伯数字转为对应的中文数字，HK 和 TW 没有区别都表示繁体中文。
 
 ##### resources
 
 Type: `object`
+
+> 默认最大支持到 10^16，即千万亿，最小支持到 10^-16，如果使用万万和亿亿则没有限制。
 
 自定义设置中文语境下的数级、数位、小数点以及数字零到九，可通过 `import { RESOURCES } from "number-to-zh";` 查看。
 

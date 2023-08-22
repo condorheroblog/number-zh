@@ -10,8 +10,6 @@
 npm install -D number-to-zh
 ```
 
-案例：
-
 ```ts
 import { numberToZh } from "number-to-zh";
 
@@ -23,4 +21,27 @@ numberToZh(1000_0001);				// 一千万零一
 numberToZh("12345678");				// 一千二百三十四万五千六百七十八
 ```
 
-详细使用点击 [number-to-zh](https://github.com/condorheroblog/number-zh/tree/main/packages/number-to-zh) 查看文档。
+更多查看文档 [number-to-zh](https://github.com/condorheroblog/number-zh/tree/main/packages/number-to-zh)。
+
+## Zh-to-number
+
+中文数字转阿拉伯数字
+
+```bash
+npm install -D zh-to-number
+```
+
+
+```ts
+import { zhToNumber } from "zh-to-number";
+
+zhToNumber("零");																					// "0"
+zhToNumber("零点一");																			// "0.1"
+zhToNumber("一千万零一");																	 // "10000001"
+zhToNumber("一千二百三十四万五千六百七十八");									 // "12345678"
+zhToNumber("一十");																				// "10"
+zhToNumber("十");																					// "10"
+zhToNumber("壹仟万零壹", { language: "zh-CN-uppercase" }); // "10000001"
+```
+
+更多查看文档 [zh-to-number](https://github.com/condorheroblog/number-zh/tree/main/packages/zh-to-number)。
