@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/npm/l/number-to-zh)](https://github.com/condorheroblog/number-zh/blob/main/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/condorheroblog/number-zh)](https://github.com/condorheroblog/number-zh/blob/main/packages/number-to-zh)
 
-数字转（大写，小写）简 / 繁体中文数字
+阿拉伯数字转（大写，小写）简 / 繁体中文数字
 
 ## Install
 

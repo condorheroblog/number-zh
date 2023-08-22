@@ -4,7 +4,7 @@
 	"type": "module",
 	"license": "MIT",
 	"author": "Condor Hero",
-	"description": "数字转（大写，小写）简 / 繁体中文数字",
+	"description": "阿拉伯数字转（大写，小写）简 / 繁体中文数字",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
