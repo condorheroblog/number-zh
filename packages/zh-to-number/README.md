@@ -7,10 +7,18 @@
 
 中文数字转阿拉伯数字
 
+## Highlights
+
+- 📦 零依赖：无需依赖其他库或框架。
+- ⚙️ 支持 ESM、CJS 和 IIFE 引入：可根据项目需求选择合适的引入方式。
+- 📝 支持简体中文和繁体中文的大小写数字：满足不同语境下的需求。
+- 🔢 大数支持：显示大数无精度问题，保持精确性。
+- 🔧 可自定义配置：根据个人需求调整库的行为和设置。
+
 ## Install
 
 ```bash
-npm install -D zh-to-number
+npm install zh-to-number
 ```
 
 ## Usage
@@ -30,6 +38,16 @@ zhToNumber("十");																					// "10"
 zhToNumber("壹仟万零壹", { language: "zh-CN-uppercase" }); // "10000001"
 ```
 
+### CDN
+
+你可以借助 script 标签直接通过 CDN 来使用：
+
+```html
+<script src="https://unpkg.com/zh-to-number/dist/zh-to-number.global.js"></script>
+<script>console.log(__ZH_TO_NUMBER__.numberToZh(11));</script>
+```
+
+这里我们使用了 [unpkg](https://unpkg.com/)，但你也可以使用任何提供 npm 包服务的 CDN，例如 [jsdelivr](https://www.jsdelivr.com/) 或 [cdnjs](https://cdnjs.com/)。当然，你也可以下载此文件并自行提供服务。
 
 ### 自定义数级
 

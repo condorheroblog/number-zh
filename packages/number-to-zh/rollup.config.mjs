@@ -10,6 +10,7 @@ const banner = `/**
  * ${pkg.name} ${pkg.version}
  * Author ${pkg.author}
  * License ${pkg.license}
+ * ©️ 2023
  * Homepage ${pkg.homepage}
  */\n`;
 

@@ -7,7 +7,7 @@
 阿拉伯数字转（大写，小写）简 / 繁体中文数字
 
 ```bash
-npm install -D number-to-zh
+npm install number-to-zh
 ```
 
 ```ts
@@ -28,7 +28,7 @@ numberToZh("12345678");				// 一千二百三十四万五千六百七十八
 中文数字转阿拉伯数字
 
 ```bash
-npm install -D zh-to-number
+npm install zh-to-number
 ```
 
 

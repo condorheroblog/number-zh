@@ -7,10 +7,19 @@
 
 阿拉伯数字转（大写，小写）简 / 繁体中文数字
 
+## Highlights
+
+- 📦 零依赖：无需依赖其他库或框架。
+- 📣 支持万亿和亿亿：适配简体中文特殊习惯
+- ⚙️ 支持 ESM、CJS 和 IIFE 引入：可根据项目需求选择合适的引入方式。
+- 📝 支持简体中文和繁体中文的大小写数字：满足不同语境下的需求。
+- 🔢 大数支持：显示大数无精度问题，保持精确性。
+- 🔧 可自定义配置：根据个人需求调整库的行为和设置。
+
 ## Install
 
 ```bash
-npm install -D number-to-zh
+npm install number-to-zh
 ```
 
 ## Usage
@@ -25,6 +34,17 @@ numberToZh(1e12);							// 一万亿
 numberToZh(1000_0001);				// 一千万零一
 numberToZh("12345678");				// 一千二百三十四万五千六百七十八
 ```
+
+### CDN
+
+你可以借助 script 标签直接通过 CDN 来使用：
+
+```html
+<script src="https://unpkg.com/number-to-zh/dist/number-to-zh.global.js"></script>
+<script>console.log(__NUMBER_TO_ZH__.numberToZh(11));</script>
+```
+
+这里我们使用了 [unpkg](https://unpkg.com/)，但你也可以使用任何提供 npm 包服务的 CDN，例如 [jsdelivr](https://www.jsdelivr.com/) 或 [cdnjs](https://cdnjs.com/)。当然，你也可以下载此文件并自行提供服务。
 
 ### 十的口语化
 
