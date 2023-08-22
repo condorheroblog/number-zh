@@ -31,8 +31,9 @@
 		"number-to-zh",
 		"zh-to-number",
 		"number-to-money",
-		"中文转阿拉伯数字",
-		"阿拉伯数字转中文"
+		"money-to-number",
+		"中文数字转阿拉伯数字",
+		"阿拉伯数字转中文数字"
 	],
 	"repository": {
 		"type": "git",
@@ -49,7 +50,7 @@
 		"build": "rimraf dist && rollup -c",
 		"build:watch": "rimraf dist && rollup -c -w",
 		"typecheck": "tsc --noEmit",
-		"release": "bumpp && pnpm publish"
+		"release": "bumpp -c 'release(zh-to-number): v%s' -t 'zh-to-number_v%s' && pnpm publish"
 	},
 	"publishConfig": {
 		"access": "public",
