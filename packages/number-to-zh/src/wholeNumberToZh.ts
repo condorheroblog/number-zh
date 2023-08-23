@@ -1,7 +1,7 @@
 import type { resolveOptions } from "./resolveOptions";
 export type wholeNumberToZhOptions = ReturnType<typeof resolveOptions>;
 
-import { clearZero } from "../../core/src";
+import { clearZero } from "./utils";
 
 export function wholeNumberToZh({
 	wholeNumber,

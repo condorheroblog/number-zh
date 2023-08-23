@@ -1,13 +1,7 @@
 import type { NumberToZhOptions } from "./types";
 import { resolveOptions } from "./resolveOptions";
 import { wholeNumberToZh } from "./wholeNumberToZh";
-import {
-	isValidNumber,
-	isScientificNotation,
-	parseRationalNumber,
-	clearZero,
-	scientificToNumber,
-} from "../../core/src";
+import { isValidNumber, isScientificNotation, parseRationalNumber, clearZero, scientificToNumber } from "./utils";
 
 export function numberToZh(num: number | string, options: NumberToZhOptions = {}) {
 	let numString = num.toString();

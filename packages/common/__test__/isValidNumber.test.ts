@@ -7,11 +7,11 @@ describe(`valid ${isValidNumber.name} (number)`, () => {
 		expect(isValidNumber(-2.5)).toBe(true);
 		expect(isValidNumber(3.14)).toBe(true);
 		expect(isValidNumber(0)).toBe(true);
-		// eslint-disable-next-line prettier/prettier
+
 		expect(isValidNumber(0.5)).toBe(true);
-		// eslint-disable-next-line prettier/prettier
+
 		expect(isValidNumber(5)).toBe(true);
-		// eslint-disable-next-line prettier/prettier
+
 		expect(isValidNumber(+5)).toBe(true);
 		expect(isValidNumber(1e3)).toBe(true);
 	});

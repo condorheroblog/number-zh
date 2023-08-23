@@ -1,8 +1,8 @@
 import { ZhToNumberOptions } from "./types";
-import { stringAddition } from "../../number-to-zh/src";
 import { checkCharacters } from "./checkCharacters";
 import { resolveOptions } from "./resolveOptions";
 import { parseZhNumber } from "./parseZhNumber";
+import { stringAddition } from "./utils";
 import { positive } from "./constant";
 
 export function zhToNumber(inputNumberString: string, options: ZhToNumberOptions = {}) {

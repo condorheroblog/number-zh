@@ -1,5 +1,5 @@
 import type { ZhToNumberOptions } from "./types";
-import { RESOURCES } from "../../number-to-zh/src";
+import { RESOURCES } from "./constant";
 
 export function resolveOptions(options: ZhToNumberOptions) {
 	const language = options.language ?? "zh-CN-lowercase";
