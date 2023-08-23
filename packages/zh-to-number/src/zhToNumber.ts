@@ -3,19 +3,18 @@ import { checkCharacters } from "./checkCharacters";
 import { resolveOptions } from "./resolveOptions";
 import { parseZhNumber } from "./parseZhNumber";
 import { stringAddition } from "./utils";
-import { positive } from "./constant";
 
 export function zhToNumber(inputNumberString: string, options: ZhToNumberOptions = {}) {
 	if (typeof inputNumberString === "string") {
 		inputNumberString = inputNumberString.trim();
 		const resolved = resolveOptions(options);
 		const comparisonString = [
-			...resolved.minusSign,
+			resolved.minusSign,
 			...resolved.baseNumerals,
 			...resolved.digitsList,
 			...resolved.magnitudeList,
-			...resolved.decimalPoint,
-			positive,
+			resolved.decimalPoint,
+			resolved.positive,
 		];
 		const isChineseNumerals = checkCharacters(inputNumberString, comparisonString.join(","));
 		if (isChineseNumerals) {
@@ -24,7 +23,7 @@ export function zhToNumber(inputNumberString: string, options: ZhToNumberOptions
 				inputNumberString = resolved.baseNumerals[1] + inputNumberString;
 			} else {
 				if (
-					inputNumberString.startsWith(`${positive}${resolved.digitsList[1]}`) ||
+					inputNumberString.startsWith(`${resolved.positive}${resolved.digitsList[1]}`) ||
 					inputNumberString.startsWith(`${resolved.minusSign}${resolved.digitsList[1]}`)
 				) {
 					inputNumberString = inputNumberString.charAt(0) + resolved.baseNumerals[1] + inputNumberString.slice(1);

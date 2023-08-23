@@ -1,7 +1,8 @@
 import { describe, test } from "vitest";
+import type { LanguageType } from "../src";
 import { numberToZh, RESOURCES } from "../src";
 
-const languages = Object.keys(RESOURCES) as Array<keyof typeof RESOURCES>;
+const languages = Object.keys(RESOURCES) as Array<LanguageType>;
 
 describe(`${numberToZh.name} - CN`, () => {
 	test(`${languages[0]}`, async ({ expect }) => {
@@ -82,7 +83,7 @@ describe(`${numberToZh.name} - CN`, () => {
 	});
 
 	test(`resources`, async ({ expect }) => {
-		const options = { language: languages[1], resources: RESOURCES };
+		const options = { language: languages[1], ...RESOURCES[languages[1]] };
 		expect(numberToZh("0", options)).toBe("零");
 		expect(numberToZh(1234, options)).toBe("壹仟贰佰叁拾肆");
 		expect(numberToZh(1234_5678, options)).toBe("壹仟贰佰叁拾肆万伍仟陆佰柒拾捌");
@@ -93,10 +94,8 @@ describe(`${numberToZh.name} - CN`, () => {
 	});
 
 	test(`mismatch`, async ({ expect }) => {
-		const options = { language: languages[1], resources: {} };
-		expect(() => numberToZh("0", options)).toThrowErrorMatchingInlineSnapshot(
-			'"zh-CN-uppercase does not appear in resources"',
-		);
+		const options = { language: "xxxxx" as LanguageType };
+		expect(() => numberToZh("0", options)).toThrowErrorMatchingInlineSnapshot('"xxxxx does not appear in resources"');
 	});
 });
 
@@ -138,12 +137,10 @@ describe(`${numberToZh.name} - count unit exceeded`, () => {
 		).toThrowErrorMatchingInlineSnapshot('"整数部分超出能表示的最大计数单位，请设置更大的数级（magnitude）"');
 	});
 	test(`provide a larger magnitude`, async ({ expect }) => {
-		RESOURCES[languages[2]].magnitudeList.push("京");
+		const magnitudeList = RESOURCES[languages[2]].magnitudeList.slice(0);
 		const options = {
 			language: languages[2],
-			resources: {
-				[languages[2]]: RESOURCES[languages[2]],
-			},
+			magnitudeList: [...magnitudeList, "京"],
 		};
 		expect(numberToZh(1.23456789e16, options)).toBe("一京二千三百四十五兆六千七百八十九億");
 	});
@@ -179,12 +176,7 @@ describe(`${numberToZh.name} - digitsAboveTenThousand`, () => {
 			numberToZh(9200_1111_0000_1234, {
 				language: "zh-CN-lowercase",
 				digitsAboveTenThousand: 4,
-				resources: {
-					"zh-CN-lowercase": {
-						...RESOURCES["zh-CN-lowercase"],
-						magnitudeList: [...RESOURCES["zh-CN-lowercase"].magnitudeList, "兆"],
-					},
-				},
+				magnitudeList: [...RESOURCES["zh-CN-lowercase"].magnitudeList, "兆"],
 			}),
 		).toBe("九千二百兆一千一百一十一亿零一千二百三十四");
 	});
@@ -208,12 +200,7 @@ describe(`${numberToZh.name} - digitsAboveTenThousand`, () => {
 				language: "zh-CN-lowercase",
 				digitsAboveTenThousand: 8,
 				repeatChar: false,
-				resources: {
-					"zh-CN-lowercase": {
-						...RESOURCES["zh-CN-lowercase"],
-						magnitudeList: ["", "万", "亿", "京"],
-					},
-				},
+				magnitudeList: ["", "万", "亿", "京"],
 			}),
 		).toBe("五京四千万三千亿二千万零一");
 

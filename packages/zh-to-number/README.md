@@ -58,12 +58,7 @@ import { zhToNumber, RESOURCES } from "zh-to-number";
 
 const options = {
 	language: "zh-CN-lowercase" as const,
-	resources: {
-		"zh-CN-lowercase": {
-			...RESOURCES["zh-CN-lowercase"],
-			magnitudeList: [...RESOURCES["zh-CN-lowercase"].magnitudeList, "京"],
-		},
-	},
+	magnitudeList: [...RESOURCES["zh-CN-lowercase"].magnitudeList, "京"],
 };
 zhToNumber("一京", options) // "10000000000000000"
 ```
@@ -87,10 +82,46 @@ Default: `"zh-CN-lowercase"`
 
 不同的中文数字转为阿拉伯数字，HK 和 TW 没有区别都表示繁体中文。
 
-##### resources
+##### digitsList
 
-Type: `object`
+Type: `string[]`
+Default: `["", "十", "百", "千"]`
 
-> 默认最大支持到 10^16，即千万亿，最小支持到 10^-16，如果使用万万和亿亿则没有限制。
+对应语言的数位列表。
 
-自定义设置中文语境下的数级、数位、小数点以及数字零到九，可通过 `import { RESOURCES } from "zh-to-number";` 查看。
+##### magnitudeList
+
+Type: `string[]`
+Default: `["", "万", "亿", "兆"]`
+
+对应语言的数级列表。
+
+##### baseNumerals
+
+Type: `string[]`
+Default: `["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"]`
+
+对应语言从零到九的中文数字列表。
+
+##### minusSign
+
+Type: `string`
+Default: `负`
+
+对应语言「负」的写法。
+
+##### positive
+
+Type: `string`
+Default: `正`
+
+对应语言「正」的写法。
+
+##### decimalPoint
+
+Type: `string`
+Default: `点`
+
+对应语言「点」的写法。
+
+

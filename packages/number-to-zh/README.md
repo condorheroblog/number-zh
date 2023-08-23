@@ -24,6 +24,8 @@ npm install number-to-zh
 
 ## Usage
 
+> 默认最大支持到 10^16，即千万亿，最小支持到 10^-16，如果使用万万和亿亿则没有限制。
+
 ```ts
 import { numberToZh } from "number-to-zh";
 
@@ -108,17 +110,12 @@ numberToZh(1_0000_0000_0000_0000, { repeatChar: "YY" }); // 一亿亿
 想用 「万万」 表示亿，比如四万万同胞的说法。
 
 ```ts
-import { numberToZh, RESOURCES } from "number-to-zh";
+import { numberToZh } from "number-to-zh";
 
 // 四万万
 numberToZh(4_0000_0000, {
 	language: "zh-CN-lowercase",
-	resources: {
-		"zh-CN-lowercase": {
-			...RESOURCES["zh-CN-lowercase"],
-			magnitudeList: ["", "万", "万万"],
-		},
-	},
+	magnitudeList: ["", "万", "万万"],
 });
 ```
 
@@ -127,18 +124,13 @@ numberToZh(4_0000_0000, {
 比如根据 [有关中文大数词问题的缘由和建议](https://nlp.ict.ac.cn/lwlz/fblw/lw2013/202210/P020221010412021442481.pdf) 的建议，简体中文数字万以上采用采用八位进制。因为万亿占用了兆，所以下一个数级是京，下面是添加对京的支持：
 
 ```ts
-import { numberToZh, RESOURCES } from "number-to-zh";
+import { numberToZh } from "number-to-zh";
 
 const options = {
 	language: "zh-CN-lowercase",
 	// repeatChar 一定是 false
 	repeatChar: false,
-	resources: {
-		"zh-CN-lowercase": {
-			...RESOURCES["zh-CN-lowercase"],
-			magnitudeList: ["", "万", "亿", "京"],
-		},
-	},
+	magnitudeList: ["", "万", "亿", "京"],
 };
 
 numberToZh("54000300020000001", options);					// 五京四千万三千亿二千万零一
@@ -153,12 +145,7 @@ import { numberToZh, RESOURCES } from "number-to-zh";
 const options = {
 	language: "zh-CN-lowercase",
 	digitsAboveTenThousand: 4,
-	resources: {
-		"zh-CN-lowercase": {
-			...RESOURCES["zh-CN-lowercase"],
-			magnitudeList: [...RESOURCES["zh-CN-lowercase"].magnitudeList, "京"],
-		},
-	},
+	magnitudeList: [...RESOURCES["zh-CN-lowercase"].magnitudeList, "京"],
 };
 
 numberToZh(1_0000_0000_0000, options);					// 一兆
@@ -194,14 +181,6 @@ Default: `"zh-CN-lowercase"`
 
 阿拉伯数字转为对应的中文数字，HK 和 TW 没有区别都表示繁体中文。
 
-##### resources
-
-Type: `object`
-
-> 默认最大支持到 10^16，即千万亿，最小支持到 10^-16，如果使用万万和亿亿则没有限制。
-
-自定义设置中文语境下的数级、数位、小数点以及数字零到九，可通过 `import { RESOURCES } from "number-to-zh";` 查看。
-
 ##### skipOneBeforeTen
 
 Type: `boolean`
@@ -221,3 +200,38 @@ Default: `"WW"`
 Type: `4 | "Quaternary" | 8 | "Octal"`
 
 万位以上的进制，简体中文默认 8，繁体中文默认 4。
+
+##### digitsList
+
+Type: `string[]`
+Default: `["", "十", "百", "千"]`
+
+对应语言的数位列表。
+
+##### magnitudeList
+
+Type: `string[]`
+Default: `["", "万", "亿", "兆"]`
+
+对应语言的数级列表。
+
+##### baseNumerals
+
+Type: `string[]`
+Default: `["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"]`
+
+对应语言从零到九的中文数字列表。
+
+##### minusSign
+
+Type: `string`
+Default: `负`
+
+对应语言「负」的写法。
+
+##### decimalPoint
+
+Type: `string`
+Default: `点`
+
+对应语言「点」的写法。

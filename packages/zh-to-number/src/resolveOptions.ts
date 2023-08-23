@@ -1,16 +1,21 @@
 import type { ZhToNumberOptions } from "./types";
-import { RESOURCES } from "./constant";
+import { RESOURCES, positive } from "./constant";
 
 export function resolveOptions(options: ZhToNumberOptions) {
 	const language = options.language ?? "zh-CN-lowercase";
-	const defaultResources = RESOURCES;
 
-	const resources = options.resources ?? defaultResources;
-	if (!resources.hasOwnProperty(language)) {
+	if (!RESOURCES.hasOwnProperty(language)) {
 		throw new Error(`${language} does not appear in resources`);
 	}
 
+	const languageConfig = RESOURCES[language];
+
 	return {
-		...resources[language],
+		digitsList: options.digitsList ?? languageConfig.digitsList,
+		magnitudeList: options.magnitudeList ?? languageConfig.magnitudeList,
+		baseNumerals: options.baseNumerals ?? languageConfig.baseNumerals,
+		minusSign: options.minusSign ?? languageConfig.minusSign,
+		decimalPoint: options.decimalPoint ?? languageConfig.decimalPoint,
+		positive: options.positive ?? positive,
 	};
 }

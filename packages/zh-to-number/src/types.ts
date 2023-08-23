@@ -1,8 +1,8 @@
-import type { LanguageType, resourcesType } from "../../number-to-zh/src";
+import type { LanguageType, ChineseNumericType } from "../../number-to-zh/src";
 
-export type { LanguageType, resourcesType };
+export type { LanguageType, ChineseNumericType };
 
-export interface ZhToNumberOptions {
+export interface ZhToNumberOptions extends ChineseNumericType {
 	language?: LanguageType;
-	resources?: resourcesType;
+	positive?: string;
 }

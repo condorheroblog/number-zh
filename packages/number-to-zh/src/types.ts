@@ -1,20 +1,17 @@
 import type { RESOURCES } from "./constant";
 
-export interface resourcesType {
-	[key: string]: {
-		digitsList: string[];
-		magnitudeList: string[];
-		baseNumerals: string[];
-		minusSign: string;
-		decimalPoint: string;
-	};
-}
-
 export type LanguageType = keyof typeof RESOURCES;
+export type ChineseNumericType = {
+	digitsList?: string[];
+	magnitudeList?: string[];
+	baseNumerals?: string[];
+	minusSign?: string;
+	decimalPoint?: string;
+};
 
-export interface NumberToZhOptions {
+export interface NumberToZhOptions extends ChineseNumericType {
 	language?: LanguageType;
-	resources?: resourcesType;
+
 	skipOneBeforeTen?: boolean;
 	/**
 	 * @default "WW"

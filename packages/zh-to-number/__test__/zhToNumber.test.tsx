@@ -109,6 +109,14 @@ describe(`${zhToNumber.name} regular character`, () => {
 		expect(zhToNumber("壹兆貳仟參佰肆拾伍億陸仟柒佰捌拾玖萬", { language: "zh-HK-uppercase" })).toBe("1234567890000");
 	});
 
+	test(`custom magnitudeList`, async ({ expect }) => {
+		const options = {
+			language: "zh-CN-lowercase" as const,
+			magnitudeList: ["", "万", "亿", "兆", "京"],
+		};
+		expect(zhToNumber("一京", options)).toBe("10000000000000000");
+	});
+
 	test(`一十 => 十`, async ({ expect }) => {
 		expect(zhToNumber("二十")).toBe("20");
 		expect(zhToNumber("十")).toBe("10");
