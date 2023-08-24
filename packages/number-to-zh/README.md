@@ -11,9 +11,10 @@
 
 - 📦 零依赖：无需依赖其他库或框架。
 - 📣 支持万亿和亿亿：适配简体中文特殊习惯
-- ⚙️ 支持 ESM、CJS 和 IIFE 引入：可根据项目需求选择合适的引入方式。
+- ⚙️  支持 ESM、CJS 和 IIFE 引入：可根据项目需求选择合适的引入方式。
 - 📝 支持简体中文和繁体中文的大小写数字：满足不同语境下的需求。
 - 🔢 大数支持：显示大数无精度问题，保持精确性。
+- ⭕️ 编号或是日期：提供编号与数字之间的翻译。
 - 🔧 可自定义配置：根据个人需求调整库的行为和设置。
 
 ## Install
@@ -235,3 +236,24 @@ Type: `string`
 Default: `点`
 
 对应语言「点」的写法。
+
+## 编号或是日期
+
+根据 [出版物上数字用法的规定 - 中华人民共和国教育部](http://www.moe.gov.cn/ewebeditor/uploadfile/2015/01/13/20150113091154536.pdf) 「〇」 仅用于编号或是日期，例如 2012 年汉字形式写为 「二〇一二」，不是 「二零一二」。
+
+```ts
+import { NumeralsConverter } from "number-to-zh";
+
+const baseNumerals = ["〇", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
+const converter = new NumeralsConverter(baseNumerals);
+
+converter.getValueFromIndex(10_0001);	// "一〇〇〇〇一"
+converter.getValueFromIndex(10_0101);	// "一〇〇一〇一"
+converter.getValueFromIndex(10_1001);	// "一〇一〇〇一"
+converter.getValueFromIndex(10_1010);	// "一〇一〇一〇"
+
+converter.getIndexFromValue("一〇〇〇〇一");	// "100001"
+converter.getIndexFromValue("一〇〇一〇一");	// "100101"
+converter.getIndexFromValue("一〇一〇〇一");	// "101001"
+converter.getIndexFromValue("一〇一〇一〇");	// "101010"
+```
