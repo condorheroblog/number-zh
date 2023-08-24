@@ -163,6 +163,27 @@ numberToZh(1000_0000_0000_0000, {
 });
 ```
 
+## 编号和日期
+
+根据 [出版物上数字用法的规定 - 中华人民共和国教育部](http://www.moe.gov.cn/ewebeditor/uploadfile/2015/01/13/20150113091154536.pdf) 「〇」 仅用于编号或是日期，例如 2012 年汉字形式写为 「二〇一二」，不是 「二零一二」。
+
+```ts
+import { NumeralsConverter } from "number-to-zh";
+
+const baseNumerals = ["〇", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
+const converter = new NumeralsConverter(baseNumerals);
+
+converter.getValueFromIndex(10_0001);	// "一〇〇〇〇一"
+converter.getValueFromIndex(10_0101);	// "一〇〇一〇一"
+converter.getValueFromIndex(10_1001);	// "一〇一〇〇一"
+converter.getValueFromIndex(10_1010);	// "一〇一〇一〇"
+
+converter.getIndexFromValue("一〇〇〇〇一");	// "100001"
+converter.getIndexFromValue("一〇〇一〇一");	// "100101"
+converter.getIndexFromValue("一〇一〇〇一");	// "101001"
+converter.getIndexFromValue("一〇一〇一〇");	// "101010"
+```
+
 ## API
 
 ### numberToZh(num, options?)
@@ -237,23 +258,19 @@ Default: `点`
 
 对应语言「点」的写法。
 
-## 编号或是日期
+### new NumeralsConverter(array)
 
-根据 [出版物上数字用法的规定 - 中华人民共和国教育部](http://www.moe.gov.cn/ewebeditor/uploadfile/2015/01/13/20150113091154536.pdf) 「〇」 仅用于编号或是日期，例如 2012 年汉字形式写为 「二〇一二」，不是 「二零一二」。
+一个转换器，提供两个方法，用于获取数组项和数组下标的关系。
 
 ```ts
-import { NumeralsConverter } from "number-to-zh";
-
-const baseNumerals = ["〇", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
-const converter = new NumeralsConverter(baseNumerals);
-
-converter.getValueFromIndex(10_0001);	// "一〇〇〇〇一"
-converter.getValueFromIndex(10_0101);	// "一〇〇一〇一"
-converter.getValueFromIndex(10_1001);	// "一〇一〇〇一"
-converter.getValueFromIndex(10_1010);	// "一〇一〇一〇"
-
-converter.getIndexFromValue("一〇〇〇〇一");	// "100001"
-converter.getIndexFromValue("一〇〇一〇一");	// "100101"
-converter.getIndexFromValue("一〇一〇〇一");	// "101001"
-converter.getIndexFromValue("一〇一〇一〇");	// "101010"
+const converter = new NumeralsConverter(array);
 ```
+
+##### converter.getValueFromIndex(index: number | string)
+
+输入一系列数组下标返回数组的项。
+
+##### converter.getIndexFromValue(strList: string)
+
+
+输入一系列数组项返回数组下标。
