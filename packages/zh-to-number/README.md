@@ -10,7 +10,7 @@
 ## Highlights
 
 - 📦 零依赖：无需依赖其他库或框架。
-- ⚙️ 支持 ESM、CJS 和 IIFE 引入：可根据项目需求选择合适的引入方式。
+- ⚙️  支持 ESM、CJS 和 IIFE 引入：可根据项目需求选择合适的引入方式。
 - 📝 支持简体中文和繁体中文的大小写数字：满足不同语境下的需求。
 - 🔢 大数支持：显示大数无精度问题，保持精确性。
 - 🔧 可自定义配置：根据个人需求调整库的行为和设置。
@@ -77,49 +77,56 @@ Type: `string`
 
 ##### language
 
-Type: `"zh-CN-lowercase" | "zh-CN-uppercase" | "zh-TW-lowercase" | "zh-TW-uppercase" | "zh-HK-lowercase" | "zh-HK-uppercase"`
+Type: `"zh-CN-lowercase" | "zh-CN-uppercase" | "zh-TW-lowercase" | "zh-TW-uppercase" | "zh-HK-lowercase" | "zh-HK-uppercase"`\
 Default: `"zh-CN-lowercase"`
 
 不同的中文数字转为阿拉伯数字，HK 和 TW 没有区别都表示繁体中文。
 
+##### thousandsSeparator
+
+Type: `boolean`\
+Default: `false`
+
+添加千分分隔符。
+
 ##### digitsList
 
-Type: `string[]`
+Type: `string[]`\
 Default: `["", "十", "百", "千"]`
 
 对应语言的数位列表。
 
 ##### magnitudeList
 
-Type: `string[]`
+Type: `string[]`\
 Default: `["", "万", "亿", "兆"]`
 
 对应语言的数级列表。
 
 ##### baseNumerals
 
-Type: `string[]`
+Type: `string[]`\
 Default: `["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"]`
 
 对应语言从零到九的中文数字列表。
 
 ##### minusSign
 
-Type: `string`
+Type: `string`\
 Default: `负`
 
 对应语言「负」的写法。
 
 ##### positive
 
-Type: `string`
+Type: `string`\
 Default: `正`
 
 对应语言「正」的写法。
 
 ##### decimalPoint
 
-Type: `string`
+Type: `string`\
 Default: `点`
 
 对应语言「点」的写法。

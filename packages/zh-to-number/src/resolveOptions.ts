@@ -11,6 +11,7 @@ export function resolveOptions(options: ZhToNumberOptions) {
 	const languageConfig = RESOURCES[language];
 
 	return {
+		thousandsSeparator: options.thousandsSeparator ?? false,
 		digitsList: options.digitsList ?? languageConfig.digitsList,
 		magnitudeList: options.magnitudeList ?? languageConfig.magnitudeList,
 		baseNumerals: options.baseNumerals ?? languageConfig.baseNumerals,

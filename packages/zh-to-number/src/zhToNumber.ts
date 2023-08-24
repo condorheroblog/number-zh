@@ -82,6 +82,15 @@ export function zhToNumber(inputNumberString: string, options: ZhToNumberOptions
 			digitsNumber = "";
 			magnitudeNumber = "";
 
+			/* ------------------ 添加千位分隔符 ------------------ */
+
+			if (resolved.thousandsSeparator) {
+				// format(value: number | string | bigint) https://github.com/microsoft/TypeScript/issues/52124
+				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+				// @ts-ignore
+				arabicNumber = new Intl.NumberFormat("en-US").format(arabicNumber);
+			}
+
 			/* ------------------ 处理小数部分 ------------------ */
 
 			if (fractionalPart) {

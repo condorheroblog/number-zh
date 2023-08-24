@@ -198,21 +198,21 @@ Type: `number | string`
 
 ##### language
 
-Type: `"zh-CN-lowercase" | "zh-CN-uppercase" | "zh-TW-lowercase" | "zh-TW-uppercase" | "zh-HK-lowercase" | "zh-HK-uppercase"`
+Type: `"zh-CN-lowercase" | "zh-CN-uppercase" | "zh-TW-lowercase" | "zh-TW-uppercase" | "zh-HK-lowercase" | "zh-HK-uppercase"`\
 Default: `"zh-CN-lowercase"`
 
 阿拉伯数字转为对应的中文数字，HK 和 TW 没有区别都表示繁体中文。
 
 ##### skipOneBeforeTen
 
-Type: `boolean`
+Type: `boolean`\
 Default: `false`
 
 控制一十是否读作十。
 
 ##### repeatChar
 
-Type: `false | "WW" | "YY"`
+Type: `false | "WW" | "YY"`\
 Default: `"WW"`
 
 启用万亿情况下，重复的数级，`WW` 表示万万，`YY` 表示亿亿， `false` 表示万亿之后正常进入下一个数级。
@@ -225,35 +225,35 @@ Type: `4 | "Quaternary" | 8 | "Octal"`
 
 ##### digitsList
 
-Type: `string[]`
+Type: `string[]`\
 Default: `["", "十", "百", "千"]`
 
 对应语言的数位列表。
 
 ##### magnitudeList
 
-Type: `string[]`
+Type: `string[]`\
 Default: `["", "万", "亿", "兆"]`
 
 对应语言的数级列表。
 
 ##### baseNumerals
 
-Type: `string[]`
+Type: `string[]`\
 Default: `["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"]`
 
 对应语言从零到九的中文数字列表。
 
 ##### minusSign
 
-Type: `string`
+Type: `string`\
 Default: `负`
 
 对应语言「负」的写法。
 
 ##### decimalPoint
 
-Type: `string`
+Type: `string`\
 Default: `点`
 
 对应语言「点」的写法。

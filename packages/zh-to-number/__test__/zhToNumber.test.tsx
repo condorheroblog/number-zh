@@ -139,4 +139,10 @@ describe(`${zhToNumber.name} regular character`, () => {
 		expect(zhToNumber("一亿兆")).toBe(zhToNumber("一万万兆"));
 		expect(zhToNumber("一兆兆")).toBe("1000000000000000000000000");
 	});
+
+	test(`Thousands Separator`, async ({ expect }) => {
+		expect(zhToNumber("正一千二百三十四万五千六百七十八点八七六五", { thousandsSeparator: true })).toBe(
+			"12,345,678.8765",
+		);
+	});
 });
