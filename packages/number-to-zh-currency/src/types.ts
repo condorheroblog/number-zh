@@ -2,7 +2,7 @@ import type { LanguageType, ChineseNumericType, NumberToZhOptions } from "../../
 
 export type { LanguageType, ChineseNumericType, NumberToZhOptions };
 
-export interface NumberToMoneyOptions extends NumberToZhOptions {
+export interface numberToZhCurrencyOptions extends NumberToZhOptions {
 	/**
 	 * @default true
 	 * @description 金额在角位结束时，是否添加「正｜整」

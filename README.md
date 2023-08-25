@@ -46,24 +46,24 @@ zhToNumber("壹仟万零壹", { language: "zh-CN-uppercase" }); // "10000001"
 
 更多查看文档 [zh-to-number](https://github.com/condorheroblog/number-zh/tree/main/packages/zh-to-number)。
 
-## Number-to-money
+## number-to-zh-currency
 
 阿拉伯数字转中文金额数字
 
 ```bash
-npm install number-to-money
+npm install number-to-zh-currency
 ```
 
 ```ts
-import { numberToMoney } from "number-to-money";
+import { numberToZhCurrency } from "number-to-zh-currency";
 
-numberToMoney("0"); 				// 人民币零圆整
-numberToMoney("0.12"); 			// 人民币壹角贰分
-numberToMoney(11); 					// 人民币壹拾壹圆整
-numberToMoney(11.23); 			// 人民币壹拾壹圆贰角叁分
-numberToMoney(1_6409.02); 	// 人民币壹万陆仟肆佰零玖圆零贰分
-numberToMoney(325.04); 			// 人民币叁佰贰拾伍圆零肆分
-numberToMoney(10_7000.53); 	// 人民币壹拾万零柒仟圆伍角叁分
+numberToZhCurrency("0"); 				// 人民币零圆整
+numberToZhCurrency("0.12"); 			// 人民币壹角贰分
+numberToZhCurrency(11); 					// 人民币壹拾壹圆整
+numberToZhCurrency(11.23); 			// 人民币壹拾壹圆贰角叁分
+numberToZhCurrency(1_6409.02); 	// 人民币壹万陆仟肆佰零玖圆零贰分
+numberToZhCurrency(325.04); 			// 人民币叁佰贰拾伍圆零肆分
+numberToZhCurrency(10_7000.53); 	// 人民币壹拾万零柒仟圆伍角叁分
 ```
 
-更多查看文档 [number-to-money](https://github.com/condorheroblog/number-zh/tree/main/packages/number-to-money)。
+更多查看文档 [number-to-zh-currency](https://github.com/condorheroblog/number-zh/tree/main/packages/number-to-zh-currency)。

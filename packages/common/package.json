@@ -32,7 +32,7 @@
 		"number-zh-core",
 		"number-to-zh",
 		"zh-to-number",
-		"number-to-money",
+		"number-to-zh-currency",
 		"中文转阿拉伯数字",
 		"阿拉伯数字转中文"
 	],

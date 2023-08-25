@@ -1,8 +1,8 @@
-import type { NumberToMoneyOptions } from "./types";
+import type { numberToZhCurrencyOptions } from "./types";
 import { FRACTIONAL_CURRENCY_UNIT, PREFIX_SYMBOL, CNY_UNIT, AMOUNT_SUFFIX, AMOUNT_PREFIX } from "./constant";
 import { resolveNumberToZhOptions } from "./utils";
 
-export function resolveOptions(options: NumberToMoneyOptions) {
+export function resolveOptions(options: numberToZhCurrencyOptions) {
 	const resolvedNumberToZhOptions = resolveNumberToZhOptions({
 		...options,
 		language: options.language ?? "zh-CN-uppercase",

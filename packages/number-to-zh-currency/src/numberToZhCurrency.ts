@@ -1,4 +1,4 @@
-import type { NumberToMoneyOptions } from "./types";
+import type { numberToZhCurrencyOptions } from "./types";
 import { resolveOptions } from "./resolveOptions";
 import {
 	integerToZh,
@@ -9,7 +9,7 @@ import {
 	detectIntegerBoundary,
 } from "./utils";
 
-export function numberToMoney(num: number | string, options: NumberToMoneyOptions = {}) {
+export function numberToZhCurrency(num: number | string, options: numberToZhCurrencyOptions = {}) {
 	let numString = num.toString();
 	if (!isValidNumber(num)) {
 		if (isScientificNotation(num)) {

@@ -32,7 +32,7 @@ export const rollupConfig = [
 				banner,
 			},
 			{
-				file: "./dist/number-to-money.global.js",
+				file: "./dist/number-to-zh-currency.global.js",
 				format: "iife",
 				banner,
 				name: "__NUMBER_TO_MONEY__",

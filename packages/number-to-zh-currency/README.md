@@ -1,9 +1,9 @@
-# Number-to-money
+# number-to-zh-currency
 
-[![NPM version](https://img.shields.io/npm/v/number-to-money)](https://www.npmjs.com/package/number-to-money)
-![Downloads](https://img.shields.io/npm/dw/number-to-money)
-[![License](https://img.shields.io/npm/l/number-to-money)](https://github.com/condorheroblog/number-zh/blob/main/LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/condorheroblog/number-zh)](https://github.com/condorheroblog/number-zh/blob/main/packages/number-to-money)
+[![NPM version](https://img.shields.io/npm/v/number-to-zh-currency)](https://www.npmjs.com/package/number-to-zh-currency)
+![Downloads](https://img.shields.io/npm/dw/number-to-zh-currency)
+[![License](https://img.shields.io/npm/l/number-to-zh-currency)](https://github.com/condorheroblog/number-zh/blob/main/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/condorheroblog/number-zh)](https://github.com/condorheroblog/number-zh/blob/main/packages/number-to-zh-currency)
 
 阿拉伯数字转中文金额数字
 
@@ -19,21 +19,21 @@
 ## Install
 
 ```bash
-npm install number-to-money
+npm install number-to-zh-currency
 ```
 
 ## Usage
 
 ```ts
-import { numberToMoney } from "number-to-money";
+import { numberToZhCurrency } from "number-to-zh-currency";
 
-numberToMoney("0"); 				// 人民币零圆整
-numberToMoney("0.12"); 			// 人民币壹角贰分
-numberToMoney(11); 					// 人民币壹拾壹圆整
-numberToMoney(11.23); 			// 人民币壹拾壹圆贰角叁分
-numberToMoney(1_6409.02); 	// 人民币壹万陆仟肆佰零玖圆零贰分
-numberToMoney(325.04); 			// 人民币叁佰贰拾伍圆零肆分
-numberToMoney(10_7000.53); 	// 人民币壹拾万零柒仟圆伍角叁分
+numberToZhCurrency("0"); 				// 人民币零圆整
+numberToZhCurrency("0.12"); 			// 人民币壹角贰分
+numberToZhCurrency(11); 					// 人民币壹拾壹圆整
+numberToZhCurrency(11.23); 			// 人民币壹拾壹圆贰角叁分
+numberToZhCurrency(1_6409.02); 	// 人民币壹万陆仟肆佰零玖圆零贰分
+numberToZhCurrency(325.04); 			// 人民币叁佰贰拾伍圆零肆分
+numberToZhCurrency(10_7000.53); 	// 人民币壹拾万零柒仟圆伍角叁分
 ```
 
 > 中文大写数字金额规范参见中国人民银行发布的 [支付结算办法](http://www.pbc.gov.cn/zhifujiesuansi/128525/128527/2829008/index.html) 附一 [正确填写票据和结算凭证的基本规定](http://chongqing.pbc.gov.cn/chongqing/107674/2927554/2773593/index.html)。
@@ -43,15 +43,15 @@ numberToMoney(10_7000.53); 	// 人民币壹拾万零柒仟圆伍角叁分
 你可以借助 script 标签直接通过 CDN 来使用：
 
 ```html
-<script src="https://unpkg.com/number-to-money/dist/number-to-money.global.js"></script>
-<script>console.log(__NUMBER_TO_MONEY__.numberToMoney(11));</script>
+<script src="https://unpkg.com/number-to-zh-currency/dist/number-to-zh-currency.global.js"></script>
+<script>console.log(__NUMBER_TO_MONEY__.numberToZhCurrency(11));</script>
 ```
 
 这里我们使用了 [unpkg](https://unpkg.com/)，但你也可以使用任何提供 npm 包服务的 CDN，例如 [jsdelivr](https://www.jsdelivr.com/) 或 [cdnjs](https://cdnjs.com/)。当然，你也可以下载此文件并自行提供服务。
 
 ## API
 
-### numberToMoney(num, options?)
+### numberToZhCurrency(num, options?)
 
 #### num
 

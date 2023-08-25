@@ -65,9 +65,9 @@ importers:
 
   packages/cli: {}
 
-  packages/core: {}
+  packages/common: {}
 
-  packages/number-to-money: {}
+  packages/number-to-zh-currency: {}
 
   packages/number-to-zh: {}
 

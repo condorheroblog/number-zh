@@ -19,7 +19,7 @@
 		"prepublishOnly": "nr build",
 		"dev:number-to-zh": "esno packages/number-to-zh/src/numberToZh.ts",
 		"dev:zh-to-number": "esno packages/zh-to-number/src/zhToNumber.ts",
-		"dev:number-to-money": "esno packages/number-to-money/src/numberToMoney.ts",
+		"dev:number-to-zh-currency": "esno packages/number-to-zh-currency/src/numberToZhCurrency.ts",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
 		"format": "prettier --write .",
