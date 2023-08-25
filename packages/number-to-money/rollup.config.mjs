@@ -24,10 +24,12 @@ export const rollupConfig = [
 			{
 				file: "./dist/index.cjs",
 				format: "cjs",
+				banner,
 			},
 			{
 				file: "./dist/index.mjs",
 				format: "esm",
+				banner,
 			},
 			{
 				file: "./dist/number-to-money.global.js",

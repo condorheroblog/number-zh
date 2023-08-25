@@ -1,14 +1,14 @@
 import type { resolveOptions } from "./resolveOptions";
-export type wholeNumberToZhOptions = ReturnType<typeof resolveOptions>;
+export type NumberTranslatorOptions = ReturnType<typeof resolveOptions>;
 
 import { clearZero } from "./utils";
 
-export function wholeNumberToZh({
+export function numberTranslator({
 	wholeNumber,
 	resolved,
 }: {
 	wholeNumber: string;
-	resolved: wholeNumberToZhOptions;
+	resolved: NumberTranslatorOptions;
 }): string {
 	const integerSize = wholeNumber.length;
 	const chineseZero = resolved.baseNumerals[0];
@@ -40,12 +40,12 @@ export function wholeNumberToZh({
 		const magnitudeIndex = Math.floor((integerSize - 1) / 4);
 		const numberMagnitude = resolved.magnitudeList[magnitudeIndex];
 
-		const aboveDigitalNumber = wholeNumberToZh({
+		const aboveDigitalNumber = numberTranslator({
 			wholeNumber: wholeNumber.slice(0, wholeNumberIndex === 0 ? 4 : wholeNumberIndex),
 			resolved,
 		});
 		const belowDigitalSlice = wholeNumber.slice(wholeNumberIndex === 0 ? 4 : wholeNumberIndex);
-		const belowDigitalNumber = wholeNumberToZh({
+		const belowDigitalNumber = numberTranslator({
 			wholeNumber: belowDigitalSlice,
 			resolved,
 		});

@@ -1,5 +1,3 @@
-export { RESOURCES } from "../../number-to-zh/src";
-
 export const FRACTIONAL_CURRENCY_UNIT = ["角", "分"];
 export const AMOUNT_PREFIX = "人民币";
 export const PREFIX_SYMBOL = "¥";

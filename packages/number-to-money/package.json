@@ -4,7 +4,7 @@
 	"type": "module",
 	"license": "MIT",
 	"author": "Condor Hero",
-	"description": "阿拉伯数字转金额",
+	"description": "阿拉伯数字转中文金额数字",
 	"bin": {},
 	"exports": {
 		".": {
@@ -32,6 +32,9 @@
 		"zh-to-number",
 		"number-to-money",
 		"money-to-number",
+		"阿拉伯数字转中文金额数字",
+		"阿拉伯数字转货币",
+		"阿拉伯数字转金额",
 		"中文数字转阿拉伯数字",
 		"阿拉伯数字转中文数字"
 	],

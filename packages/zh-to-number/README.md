@@ -44,7 +44,7 @@ zhToNumber("壹仟万零壹", { language: "zh-CN-uppercase" }); // "10000001"
 
 ```html
 <script src="https://unpkg.com/zh-to-number/dist/zh-to-number.global.js"></script>
-<script>console.log(__ZH_TO_NUMBER__.numberToZh(11));</script>
+<script>console.log(__ZH_TO_NUMBER__.zhToNumber("一十"));</script>
 ```
 
 这里我们使用了 [unpkg](https://unpkg.com/)，但你也可以使用任何提供 npm 包服务的 CDN，例如 [jsdelivr](https://www.jsdelivr.com/) 或 [cdnjs](https://cdnjs.com/)。当然，你也可以下载此文件并自行提供服务。

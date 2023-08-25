@@ -4,3 +4,4 @@ export * from "./parseRationalNumber";
 export * from "./isScientificNotation";
 export * from "./stringAddition";
 export * from "./clearZero";
+export * from "./constant";

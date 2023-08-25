@@ -1,5 +1,5 @@
 import { describe, test } from "vitest";
-import { RESOURCES } from "../src";
+import { RESOURCES } from "../../number-to-zh/src";
 
 describe("constant", () => {
 	test("RESOURCES", async ({ expect }) => {

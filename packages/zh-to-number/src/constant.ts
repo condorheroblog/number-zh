@@ -1,2 +1,2 @@
-export { RESOURCES } from "../../number-to-zh/src";
+export { RESOURCES } from "../../common/src";
 export const positive = "正";
