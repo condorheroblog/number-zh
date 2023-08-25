@@ -44,7 +44,7 @@ numberToZhCurrency(10_7000.53); 	// 人民币壹拾万零柒仟圆伍角叁分
 
 ```html
 <script src="https://unpkg.com/number-to-zh-currency/dist/number-to-zh-currency.global.js"></script>
-<script>console.log(__NUMBER_TO_MONEY__.numberToZhCurrency(11));</script>
+<script>console.log(__NUMBER_TO_ZH_CURRENCY__.numberToZhCurrency(11));</script>
 ```
 
 这里我们使用了 [unpkg](https://unpkg.com/)，但你也可以使用任何提供 npm 包服务的 CDN，例如 [jsdelivr](https://www.jsdelivr.com/) 或 [cdnjs](https://cdnjs.com/)。当然，你也可以下载此文件并自行提供服务。

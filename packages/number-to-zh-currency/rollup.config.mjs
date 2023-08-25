@@ -35,7 +35,7 @@ export const rollupConfig = [
 				file: "./dist/number-to-zh-currency.global.js",
 				format: "iife",
 				banner,
-				name: "__NUMBER_TO_MONEY__",
+				name: "__NUMBER_TO_ZH_CURRENCY__",
 			},
 		],
 	},
