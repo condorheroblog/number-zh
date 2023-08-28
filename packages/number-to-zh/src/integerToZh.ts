@@ -1,6 +1,6 @@
 import type { NumberTranslatorOptions } from "./numberTranslator";
 import { numberTranslator } from "./numberTranslator";
-import { clearZero } from "./utils";
+import { operateSequentCharacters } from "./utils";
 
 export function integerToZh(integerPart: string, resolved: NumberTranslatorOptions) {
 	const chineseZero = resolved.baseNumerals[0];
@@ -47,7 +47,10 @@ export function integerToZh(integerPart: string, resolved: NumberTranslatorOptio
 			}
 			chineseNumberString = chineseNumberGroup + chineseNumberString;
 		}
-		chineseNumberString = clearZero(chineseNumberString, chineseZero, ["middle", "end"]);
+		chineseNumberString = operateSequentCharacters(chineseNumberString, chineseZero, [
+			{ mode: "middle", remove: false },
+			{ mode: "end" },
+		]);
 	}
 
 	// 一十读作十

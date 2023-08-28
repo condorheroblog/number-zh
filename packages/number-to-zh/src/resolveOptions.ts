@@ -41,6 +41,9 @@ export function resolveOptions(options: NumberToZhOptions) {
 		digitsAboveTenThousand,
 		repeatChar,
 
+		hangingZerosBeforeDigits: options.hangingZerosBeforeDigits ?? false,
+		hangingZerosAfterDigits: options.hangingZerosAfterDigits ?? false,
+
 		digitsList: options.digitsList ?? languageConfig.digitsList,
 		magnitudeList: options.magnitudeList ?? languageConfig.magnitudeList,
 		baseNumerals: options.baseNumerals ?? languageConfig.baseNumerals,

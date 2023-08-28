@@ -3,5 +3,5 @@ export * from "./scientificToNumber";
 export * from "./parseRationalNumber";
 export * from "./isScientificNotation";
 export * from "./stringAddition";
-export * from "./clearZero";
+export * from "./operateSequentCharacters";
 export * from "./constant";

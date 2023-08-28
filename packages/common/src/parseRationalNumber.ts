@@ -1,4 +1,4 @@
-import { clearZero } from "./clearZero";
+import { operateSequentCharacters } from "./operateSequentCharacters";
 
 export function parseRationalNumber(str: string) {
 	if (typeof str !== "string") {
@@ -20,7 +20,7 @@ export function parseRationalNumber(str: string) {
 	const parts = str.split(".");
 
 	const integerPart = parts[0].replace(/^[+-]/, "");
-	const withoutLeadingZeroInteger = clearZero(integerPart, "0", ["start"]);
+	const withoutLeadingZeroInteger = operateSequentCharacters(integerPart, "0", { mode: "start" });
 	if (withoutLeadingZeroInteger.length) {
 		result.integerPart = withoutLeadingZeroInteger;
 	} else {
@@ -28,7 +28,7 @@ export function parseRationalNumber(str: string) {
 	}
 
 	if (parts.length > 1) {
-		result.fractionalPart = clearZero(parts[1], "0", ["end"]);
+		result.fractionalPart = operateSequentCharacters(parts[1], "0", { mode: "end" });
 	}
 
 	if (result.integerPart + result.fractionalPart === "0") {

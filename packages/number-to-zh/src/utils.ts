@@ -2,7 +2,7 @@ export {
 	isValidNumber,
 	isScientificNotation,
 	parseRationalNumber,
-	clearZero,
+	operateSequentCharacters,
 	scientificToNumber,
 } from "../../common/src";
 
