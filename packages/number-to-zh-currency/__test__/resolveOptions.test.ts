@@ -32,6 +32,8 @@ describe(resolveOptions.name, () => {
 			    "角",
 			    "分",
 			  ],
+			  "hangingZerosAfterDigits": true,
+			  "hangingZerosBeforeDigits": false,
 			  "magnitudeList": [
 			    "",
 			    "万",
@@ -41,7 +43,6 @@ describe(resolveOptions.name, () => {
 			  "minusSign": "负",
 			  "prefixSymbol": "¥",
 			  "preserveOnesPlaceZero": false,
-			  "preserveTenThousandsPlaceZero": true,
 			  "repeatChar": "WW",
 			  "skipOneBeforeTen": false,
 			  "tenCentsSuffix": true,

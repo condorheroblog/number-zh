@@ -46,7 +46,7 @@ zhToNumber("壹仟万零壹", { language: "zh-CN-uppercase" }); // "10000001"
 
 更多查看文档 [zh-to-number](https://github.com/condorheroblog/number-zh/tree/main/packages/zh-to-number)。
 
-## number-to-zh-currency
+## Number-to-zh-currency
 
 阿拉伯数字转中文金额数字
 

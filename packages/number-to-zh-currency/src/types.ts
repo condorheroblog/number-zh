@@ -2,18 +2,12 @@ import type { LanguageType, ChineseNumericType, NumberToZhOptions } from "../../
 
 export type { LanguageType, ChineseNumericType, NumberToZhOptions };
 
-export interface numberToZhCurrencyOptions extends NumberToZhOptions {
+export interface NumberToZhCurrencyOptions extends NumberToZhOptions {
 	/**
 	 * @default true
 	 * @description 金额在角位结束时，是否添加「正｜整」
 	 */
 	tenCentsSuffix?: boolean;
-
-	/**
-	 * @default true
-	 * @description 万位是 0，但千位不是 0，是否保留中文零
-	 */
-	preserveTenThousandsPlaceZero?: boolean;
 
 	/**
 	 * @default false

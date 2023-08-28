@@ -13,7 +13,8 @@ export function integerToZh(integerPart: string, resolved: NumberTranslatorOptio
 			resolved,
 		});
 		if (
-			chineseNumberString.length > 1 &&
+			integerSize > 1 &&
+			integerSize <= 4 &&
 			chineseNumberString.endsWith(chineseZero) &&
 			(resolved.hangingZerosBeforeDigits || resolved.hangingZerosAfterDigits)
 		) {

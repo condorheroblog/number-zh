@@ -50,13 +50,20 @@ describe(numberToZhCurrency.name, () => {
 		expect(numberToZhCurrency(1680.32)).toBe("人民币壹仟陆佰捌拾圆叁角贰分");
 	});
 
-	test("preserveTenThousandsPlaceZero", async ({ expect }) => {
+	test("hangingZerosAfterDigits", async ({ expect }) => {
 		expect(numberToZhCurrency(10_7000.53)).toBe("人民币壹拾万零柒仟圆伍角叁分");
-		expect(numberToZhCurrency(10_7000.53, { preserveTenThousandsPlaceZero: false })).toBe("人民币壹拾万柒仟圆伍角叁分");
+		expect(numberToZhCurrency(10_7000.53, { hangingZerosAfterDigits: false })).toBe("人民币壹拾万柒仟圆伍角叁分");
 	});
 
 	test("amountPrefix", async ({ expect }) => {
 		expect(numberToZhCurrency(253)).toBe("人民币贰佰伍拾叁圆整");
 		expect(numberToZhCurrency(253, { amountPrefix: "⊗" })).toBe("⊗贰佰伍拾叁圆整");
+	});
+
+	test("角位是 0 分位不是 0 元后面应写零字", async ({ expect }) => {
+		expect(numberToZhCurrency(0.01)).toBe("人民币零圆零壹分");
+		expect(numberToZhCurrency(1.01)).toBe("人民币壹圆零壹分");
+		expect(numberToZhCurrency(1680.01, { preserveOnesPlaceZero: true })).toBe("人民币壹仟陆佰捌拾圆零壹分");
+		expect(numberToZhCurrency(1680.11, { preserveOnesPlaceZero: true })).toBe("人民币壹仟陆佰捌拾圆零壹角壹分");
 	});
 });

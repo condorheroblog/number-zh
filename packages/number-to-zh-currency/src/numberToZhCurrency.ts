@@ -1,4 +1,4 @@
-import type { numberToZhCurrencyOptions } from "./types";
+import type { NumberToZhCurrencyOptions } from "./types";
 import { resolveOptions } from "./resolveOptions";
 import {
 	integerToZh,
@@ -9,7 +9,7 @@ import {
 	detectIntegerBoundary,
 } from "./utils";
 
-export function numberToZhCurrency(num: number | string, options: numberToZhCurrencyOptions = {}) {
+export function numberToZhCurrency(num: number | string, options: NumberToZhCurrencyOptions = {}) {
 	let numString = num.toString();
 	if (!isValidNumber(num)) {
 		if (isScientificNotation(num)) {
@@ -42,6 +42,8 @@ export function numberToZhCurrency(num: number | string, options: numberToZhCurr
 		baseNumerals: resolved.baseNumerals,
 		minusSign: resolved.minusSign,
 		decimalPoint: resolved.decimalPoint,
+		hangingZerosBeforeDigits: resolved.hangingZerosBeforeDigits,
+		hangingZerosAfterDigits: resolved.hangingZerosAfterDigits,
 	};
 
 	const zhIntegerString = integerToZh(integerPart, integerToZhOptions);
@@ -57,18 +59,15 @@ export function numberToZhCurrency(num: number | string, options: numberToZhCurr
 		onesPlaceZero = resolved.baseNumerals[0];
 	}
 
-	/* - 万位是 0 但千位不是 0 时，中文大写金额中可以只写一个零字，也可以不写零字 - */
-	let newZhIntegerString = zhIntegerString;
-	if (integerPart.at(-5) === "0" && integerPart.at(-4) !== "0" && resolved.preserveTenThousandsPlaceZero) {
-		const tenThousandsIndex = zhIntegerString.lastIndexOf(resolved.magnitudeList[1]) + 1;
-		newZhIntegerString =
-			zhIntegerString.slice(0, tenThousandsIndex) + resolved.baseNumerals[0] + zhIntegerString.slice(tenThousandsIndex);
-	}
-
-	newZhIntegerString += resolved.CNYUnit;
+	let newZhIntegerString = zhIntegerString + resolved.CNYUnit;
 
 	//  preserveOnesPlaceZero = false, 0.1 => 一角 not 零元一角
-	if (integerPart === "0" && fractionalPart.length && !resolved.preserveOnesPlaceZero) {
+	if (
+		integerPart === "0" &&
+		fractionalPart.length &&
+		!resolved.preserveOnesPlaceZero &&
+		fractionalPart.charAt(0) !== "0"
+	) {
 		newZhIntegerString = "";
 	}
 
