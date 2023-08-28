@@ -12,6 +12,13 @@ export function integerToZh(integerPart: string, resolved: NumberTranslatorOptio
 			wholeNumber: integerPart,
 			resolved,
 		});
+		if (
+			chineseNumberString.length > 1 &&
+			chineseNumberString.endsWith(chineseZero) &&
+			(resolved.hangingZerosBeforeDigits || resolved.hangingZerosAfterDigits)
+		) {
+			chineseNumberString = operateSequentCharacters(chineseNumberString, chineseZero, { mode: "end" });
+		}
 	} else {
 		const tenThousandNumber = integerPart.slice(-8);
 		chineseNumberString = numberTranslator({
