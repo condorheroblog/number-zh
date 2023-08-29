@@ -15,6 +15,10 @@ describe(numberToZhCurrency.name, () => {
 		expect(numberToZhCurrency(-3.2)).toBe("人民币负叁圆贰角整");
 	});
 
+	test("NaN", async ({ expect }) => {
+		expect(numberToZhCurrency("你好")).toBe(NaN);
+	});
+
 	test("language", async ({ expect }) => {
 		expect(numberToZhCurrency("12.12", { language: "zh-CN-lowercase" })).toBe("人民币一十二圆一角二分");
 		expect(numberToZhCurrency("12.12")).toBe("人民币壹拾贰圆壹角贰分");

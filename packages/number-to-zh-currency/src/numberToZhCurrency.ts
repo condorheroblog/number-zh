@@ -19,7 +19,7 @@ export function numberToZhCurrency(num: number | string, options: NumberToZhCurr
 		if (isScientificNotation(numString)) {
 			numString = scientificToNumber(numString);
 		} else {
-			throw new Error("Invalid input. Please provide a valid number.");
+			return NaN;
 		}
 	}
 

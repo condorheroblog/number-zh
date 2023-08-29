@@ -105,6 +105,6 @@ export function zhToNumber(inputNumberString: string, options: ZhToNumberOptions
 			return NaN;
 		}
 	} else {
-		throw new Error("请提供一个字符串");
+		return NaN;
 	}
 }

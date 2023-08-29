@@ -5,7 +5,7 @@ describe(`${zhToNumber.name} irregular character`, () => {
 	test("input a object", async ({ expect }) => {
 		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
-		expect(() => zhToNumber({})).toThrowErrorMatchingInlineSnapshot('"请提供一个字符串"');
+		expect(zhToNumber({})).toBe(NaN);
 	});
 	test("return a NaN", async ({ expect }) => {
 		expect(zhToNumber("哈哈哈")).toBe(NaN);

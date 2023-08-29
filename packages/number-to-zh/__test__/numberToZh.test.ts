@@ -260,8 +260,12 @@ describe(`${numberToZh.name} - numericUnderscores`, () => {
 	});
 
 	test(`numericUnderscores is false`, async ({ expect }) => {
-		expect(() => {
-			numberToZh("1_2345_6789", { numericUnderscores: false });
-		}).toThrowErrorMatchingInlineSnapshot('"Invalid input. Please provide a valid number."');
+		expect(numberToZh("1_2345_6789", { numericUnderscores: "" })).toBe(NaN);
+	});
+});
+
+describe(`${numberToZh.name} - NaN`, () => {
+	test(`irregular character`, async ({ expect }) => {
+		expect(numberToZh("Hi")).toBe(NaN);
 	});
 });
