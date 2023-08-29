@@ -253,3 +253,15 @@ describe(`${numberToZh.name} - hangingZerosAfterDigits`, () => {
 		expect(numberToZh(1_0010_1000, { hangingZerosAfterDigits: false })).toBe("一亿零一十万一千");
 	});
 });
+
+describe(`${numberToZh.name} - numericUnderscores`, () => {
+	test(`numericUnderscores is true`, async ({ expect }) => {
+		expect(numberToZh("1_2345_6789")).toBe("一亿二千三百四十五万六千七百八十九");
+	});
+
+	test(`numericUnderscores is false`, async ({ expect }) => {
+		expect(() => {
+			numberToZh("1_2345_6789", { numericUnderscores: false });
+		}).toThrowErrorMatchingInlineSnapshot('"Invalid input. Please provide a valid number."');
+	});
+});

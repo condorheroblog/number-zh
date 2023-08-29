@@ -41,6 +41,7 @@ export function resolveOptions(options: NumberToZhOptions) {
 		digitsAboveTenThousand,
 		repeatChar,
 
+		numericUnderscores: options.numericUnderscores ?? "_",
 		hangingZerosBeforeDigits: options.hangingZerosBeforeDigits ?? false,
 		hangingZerosAfterDigits: options.hangingZerosAfterDigits ?? false,
 

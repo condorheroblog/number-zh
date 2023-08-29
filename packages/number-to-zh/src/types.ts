@@ -13,16 +13,24 @@ export interface NumberToZhOptions extends ChineseNumericType {
 	language?: LanguageType;
 
 	skipOneBeforeTen?: boolean;
+
 	/**
 	 * @default "WW"
 	 * @description 启用万亿情况下，重复的数级
 	 */
 	repeatChar?: false | "WW" | "YY";
+
 	/**
 	 * @default 8
 	 * @description 超过万位 10^8，分节长度
 	 */
 	digitsAboveTenThousand?: 4 | "Quaternary" | 8 | "Octal";
+
+	/**
+	 * @default _
+	 * @description 字符串数字中支持原生数字分节
+	 */
+	numericUnderscores?: string;
 
 	/**
 	 * @default false

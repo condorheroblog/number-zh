@@ -223,6 +223,13 @@ Type: `4 | "Quaternary" | 8 | "Octal"`
 
 万位以上的进制，简体中文默认 8，繁体中文默认 4。
 
+##### numericUnderscores
+
+Type: `string`
+Default: `_`
+
+字符串数字中支持原生数字分节。
+
 ##### digitsList
 
 Type: `string[]`\

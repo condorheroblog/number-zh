@@ -10,15 +10,19 @@ import {
 } from "./utils";
 
 export function numberToZhCurrency(num: number | string, options: NumberToZhCurrencyOptions = {}) {
+	const resolved = resolveOptions(options);
 	let numString = num.toString();
-	if (!isValidNumber(num)) {
-		if (isScientificNotation(num)) {
+	if (resolved.numericUnderscores) {
+		numString = numString.replace(new RegExp(`${resolved.numericUnderscores}`, "g"), "");
+	}
+	if (!isValidNumber(numString)) {
+		if (isScientificNotation(numString)) {
 			numString = scientificToNumber(numString);
 		} else {
 			throw new Error("Invalid input. Please provide a valid number.");
 		}
 	}
-	const resolved = resolveOptions(options);
+
 	const { sign, integerPart, fractionalPart } = parseRationalNumber(numString);
 
 	/* ------------------ 整数部分边界检测 ------------------ */
@@ -44,6 +48,7 @@ export function numberToZhCurrency(num: number | string, options: NumberToZhCurr
 		decimalPoint: resolved.decimalPoint,
 		hangingZerosBeforeDigits: resolved.hangingZerosBeforeDigits,
 		hangingZerosAfterDigits: resolved.hangingZerosAfterDigits,
+		numericUnderscores: resolved.numericUnderscores,
 	};
 
 	const zhIntegerString = integerToZh(integerPart, integerToZhOptions);

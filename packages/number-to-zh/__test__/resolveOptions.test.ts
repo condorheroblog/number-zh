@@ -34,6 +34,7 @@ describe(resolveOptions.name, () => {
 			    "兆",
 			  ],
 			  "minusSign": "负",
+			  "numericUnderscores": "_",
 			  "repeatChar": "WW",
 			  "skipOneBeforeTen": false,
 			}
