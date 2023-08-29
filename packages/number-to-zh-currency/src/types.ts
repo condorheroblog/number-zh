@@ -26,7 +26,7 @@ export interface NumberToZhCurrencyOptions extends NumberToZhOptions {
 	prefixSymbol?: string;
 
 	/**
-	 * @description 中文「人民币」
+	 * @description 中文金额前缀「人民币」
 	 */
 	amountPrefix?: string;
 

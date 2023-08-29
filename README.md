@@ -67,3 +67,23 @@ numberToZhCurrency(10_7000.53); 	// 人民币壹拾万零柒仟圆伍角叁分
 ```
 
 更多查看文档 [number-to-zh-currency](https://github.com/condorheroblog/number-zh/tree/main/packages/number-to-zh-currency)。
+
+## Zh-currency-to-number
+
+中文金额数字转阿拉伯数字
+
+```bash
+npm install zh-currency-to-number
+```
+
+```ts
+import { zhCurrencyToNumber } from "zh-currency-to-number";
+
+zhCurrencyToNumber("人民币零圆整");																								// "¥0"
+zhCurrencyToNumber("人民币壹角贰分");																							// "¥0.12"
+zhCurrencyToNumber("人民币壹万陆仟肆佰零玖圆零贰分");																// "¥16409.02"
+zhCurrencyToNumber("人民币壹万陆仟肆佰零玖圆零贰分", { thousandsSeparator: true }); // "¥16,409.02"
+zhCurrencyToNumber("人民币负叁圆贰角整");																					// "¥-3.2"
+```
+
+更多查看文档 [zh-currency-to-number](https://github.com/condorheroblog/number-zh/tree/main/packages/zh-currency-to-number)。

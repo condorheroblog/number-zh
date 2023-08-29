@@ -20,6 +20,7 @@
 		"dev:number-to-zh": "esno packages/number-to-zh/src/numberToZh.ts",
 		"dev:zh-to-number": "esno packages/zh-to-number/src/zhToNumber.ts",
 		"dev:number-to-zh-currency": "esno packages/number-to-zh-currency/src/numberToZhCurrency.ts",
+		"dev:zh-currency-to-number": "esno packages/zh-currency-to-number/src/zhCurrencyToNumber.ts",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
 		"format": "prettier --write .",

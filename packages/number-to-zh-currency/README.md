@@ -27,11 +27,11 @@ npm install number-to-zh-currency
 ```ts
 import { numberToZhCurrency } from "number-to-zh-currency";
 
-numberToZhCurrency("0"); 				// 人民币零圆整
+numberToZhCurrency("0"); 					// 人民币零圆整
 numberToZhCurrency("0.12"); 			// 人民币壹角贰分
 numberToZhCurrency(11); 					// 人民币壹拾壹圆整
-numberToZhCurrency(11.23); 			// 人民币壹拾壹圆贰角叁分
-numberToZhCurrency(1_6409.02); 	// 人民币壹万陆仟肆佰零玖圆零贰分
+numberToZhCurrency(11.23); 				// 人民币壹拾壹圆贰角叁分
+numberToZhCurrency(1_6409.02); 		// 人民币壹万陆仟肆佰零玖圆零贰分
 numberToZhCurrency(325.04); 			// 人民币叁佰贰拾伍圆零肆分
 numberToZhCurrency(10_7000.53); 	// 人民币壹拾万零柒仟圆伍角叁分
 ```
@@ -123,3 +123,7 @@ Type: `string`\
 Default: `整`
 
 中国人民银行规定，中文大写金额数字到「元」为止的，在元之后，应写「整」（或「正」）字，在「角」之后可以不写「整」（或「正」）字。大写金额数字有「分」的，「分」后面不写「整」（或「正」）字。
+
+##### NumberToZhOptions
+
+参见 numberToZh 函数的 [options](https://github.com/condorheroblog/number-zh/blob/main/packages/number-to-zh/README.md#options)。
