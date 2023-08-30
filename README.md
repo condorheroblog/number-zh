@@ -61,7 +61,7 @@ numberToZhCurrency("0"); 				// 人民币零圆整
 numberToZhCurrency("0.12"); 			// 人民币壹角贰分
 numberToZhCurrency(11); 					// 人民币壹拾壹圆整
 numberToZhCurrency(11.23); 			// 人民币壹拾壹圆贰角叁分
-numberToZhCurrency(1_6409.02); 	// 人民币壹万陆仟肆佰零玖圆零贰分
+numberToZhCurrency("¥1,680.01");  // 人民币壹仟陆佰捌拾圆零壹分
 numberToZhCurrency(325.04); 			// 人民币叁佰贰拾伍圆零肆分
 numberToZhCurrency(10_7000.53); 	// 人民币壹拾万零柒仟圆伍角叁分
 ```

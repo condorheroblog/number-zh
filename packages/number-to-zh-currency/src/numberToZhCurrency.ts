@@ -11,7 +11,7 @@ import {
 
 export function numberToZhCurrency(num: number | string, options: NumberToZhCurrencyOptions = {}) {
 	const resolved = resolveOptions(options);
-	let numString = num.toString();
+	let numString = num.toString().replace(new RegExp(`${resolved.prefixSymbol}`, "g"), "");
 	if (resolved.numericUnderscores) {
 		numString = numString.replace(new RegExp(`${resolved.numericUnderscores}`, "g"), "");
 	}

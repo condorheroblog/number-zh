@@ -70,4 +70,12 @@ describe(numberToZhCurrency.name, () => {
 		expect(numberToZhCurrency(1680.01, { preserveOnesPlaceZero: true })).toBe("人民币壹仟陆佰捌拾圆零壹分");
 		expect(numberToZhCurrency(1680.11, { preserveOnesPlaceZero: true })).toBe("人民币壹仟陆佰捌拾圆零壹角壹分");
 	});
+
+	test("¥", async ({ expect }) => {
+		expect(numberToZhCurrency("¥1680.01")).toBe("人民币壹仟陆佰捌拾圆零壹分");
+	});
+
+	test("numericUnderscores", async ({ expect }) => {
+		expect(numberToZhCurrency("¥1,680.01")).toBe("人民币壹仟陆佰捌拾圆零壹分");
+	});
 });

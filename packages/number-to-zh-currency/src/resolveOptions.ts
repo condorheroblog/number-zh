@@ -19,5 +19,6 @@ export function resolveOptions(options: NumberToZhCurrencyOptions) {
 
 		...resolvedNumberToZhOptions,
 		hangingZerosAfterDigits: options.hangingZerosAfterDigits ?? true,
+		numericUnderscores: options.numericUnderscores ?? ",",
 	};
 }
