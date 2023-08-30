@@ -29,10 +29,10 @@ export const rollupConfig = [
 	{
 		input: "./src/index.ts",
 		plugins: [dts()],
-		output: {
-			file: "./dist/index.d.ts",
-			format: "esm",
-		},
+		output: [
+			{ file: "./dist/index.d.cts" },
+			{ file: "./dist/index.d.mts" },
+		],
 	},
 ];
 

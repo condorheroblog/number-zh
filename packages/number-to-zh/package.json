@@ -7,14 +7,13 @@
 	"description": "阿拉伯数字转（大写，小写）简 / 繁体中文数字",
 	"exports": {
 		".": {
-			"types": "./dist/index.d.ts",
 			"require": "./dist/index.cjs",
 			"import": "./dist/index.mjs"
 		}
 	},
 	"main": "dist/index.cjs",
 	"module": "dist/index.mjs",
-	"types": "dist/index.d.ts",
+	"types": "dist/index.d.cts",
 	"typesVersions": {
 		"*": {
 			"*": [
