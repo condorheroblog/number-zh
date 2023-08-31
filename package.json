@@ -21,7 +21,7 @@
 		"dev:zh-to-number": "esno packages/zh-to-number/src/zhToNumber.ts",
 		"dev:number-to-zh-currency": "esno packages/number-to-zh-currency/src/numberToZhCurrency.ts",
 		"dev:zh-currency-to-number": "esno packages/zh-currency-to-number/src/zhCurrencyToNumber.ts",
-		"lint": "eslint README.md",
+		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
 		"format": "prettier --write .",
 		"test": "vitest",
@@ -34,9 +34,12 @@
 		"pre-commit": "npx lint-staged"
 	},
 	"lint-staged": {
-		"*.{ts,js,mjs,cjs,md,yaml,json}": [
+		"*.{ts,js,mjs,cjs,yaml,json}": [
 			"eslint --fix",
 			"prettier --write"
+		],
+		"*.md": [
+			"eslint --fix"
 		]
 	},
 	"devDependencies": {

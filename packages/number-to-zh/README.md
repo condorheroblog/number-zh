@@ -11,7 +11,7 @@
 
 - 📦 零依赖：无需依赖其他库或框架。
 - 📣 支持万亿和亿亿：适配简体中文特殊习惯
-- ⚙️ 支持 ESM、CJS 和 IIFE 引入：可根据项目需求选择合适的引入方式。
+- ⚙️  支持 ESM、CJS 和 IIFE 引入：可根据项目需求选择合适的引入方式。
 - 📝 支持简体中文和繁体中文的大小写数字：满足不同语境下的需求。
 - 🔢 大数支持：显示大数无精度问题，保持精确性。
 - ⭕️ 编号或是日期：提供编号与数字之间的翻译。
@@ -30,12 +30,12 @@ npm install number-to-zh
 ```ts
 import { numberToZh } from "number-to-zh";
 
-numberToZh(0); // 零
-numberToZh(0.1); // 零点一
-numberToZh(-1); // 负一
-numberToZh(1e12); // 一万亿
-numberToZh(1000_0001); // 一千万零一
-numberToZh("12345678"); // 一千二百三十四万五千六百七十八
+numberToZh(0);                // 零
+numberToZh(0.1);              // 零点一
+numberToZh(-1);               // 负一
+numberToZh(1e12);             // 一万亿
+numberToZh(1000_0001);        // 一千万零一
+numberToZh("12345678");       // 一千二百三十四万五千六百七十八
 ```
 
 ### CDN
@@ -44,9 +44,7 @@ numberToZh("12345678"); // 一千二百三十四万五千六百七十八
 
 ```html
 <script src="https://unpkg.com/number-to-zh/dist/number-to-zh.global.js"></script>
-<script>
-	console.log(__NUMBER_TO_ZH__.numberToZh(11));
-</script>
+<script>console.log(__NUMBER_TO_ZH__.numberToZh(11));</script>
 ```
 
 这里我们使用了 [unpkg](https://unpkg.com/)，但你也可以使用任何提供 npm 包服务的 CDN，例如 [jsdelivr](https://www.jsdelivr.com/) 或 [cdnjs](https://cdnjs.com/)。当然，你也可以下载此文件并自行提供服务。
@@ -56,7 +54,7 @@ numberToZh("12345678"); // 一千二百三十四万五千六百七十八
 「10」 读作 「一十」，但很多时候口语化读成 「十」 省略了十前面的一，可以通过 `skipOneBeforeTen` 参数设置：
 
 ```ts
-numberToZh(10); // 一十
+numberToZh(10);                             // 一十
 numberToZh(10, { skipOneBeforeTen: true }); // 十
 ```
 
@@ -84,8 +82,8 @@ numberToZh(1000_0001, { language: "zh-HK-uppercase" }); // 壹仟萬零壹
 根据 1984 年制定的[中华人民共和国法定计量单位](http://www.dzkx.org/dzdqs-upload/news/geology/20201230155948768.pdf)，十的十二次方（10^12）称为万亿，也就是说过了万之后的亿采用八位进制，即亿、十亿、百亿、千亿变成了亿、十亿、百亿、千亿、万亿、十万亿、百万亿、千万亿。
 
 ```ts
-numberToZh(1_0000_0000_0000); // 一万亿
-numberToZh(1000_0000_0000_0000); // 一千万亿
+numberToZh(1_0000_0000_0000);       // 一万亿
+numberToZh(1000_0000_0000_0000);    // 一千万亿
 ```
 
 过了千万亿，单位可采用万万亿或者亿亿。
@@ -136,8 +134,8 @@ const options = {
 	magnitudeList: ["", "万", "亿", "京"],
 };
 
-numberToZh("54000300020000001", options); // 五京四千万三千亿二千万零一
-numberToZh("500000004000300000000001", options); // 五千万京四千万三千亿零一
+numberToZh("54000300020000001", options);         // 五京四千万三千亿二千万零一
+numberToZh("500000004000300000000001", options);  // 五千万京四千万三千亿零一
 ```
 
 如果简体中文数字，万以上想使用四位进制，可以用 digitsAboveTenThousand 参数实现：
@@ -151,8 +149,8 @@ const options = {
 	magnitudeList: [...RESOURCES["zh-CN-lowercase"].magnitudeList, "京"],
 };
 
-numberToZh(1_0000_0000_0000, options); // 一兆
-numberToZh(1_0000_0000_0000_0000, options); // 一京
+numberToZh(1_0000_0000_0000, options);          // 一兆
+numberToZh(1_0000_0000_0000_0000, options);     // 一京
 ```
 
 繁体中文也可以在万上使用八位进制，设置 digitsAboveTenThousand 为 8 就行，也可以使用万万和亿亿，不过没啥意义。
@@ -175,15 +173,15 @@ import { NumeralsConverter } from "number-to-zh";
 const baseNumerals = ["〇", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
 const converter = new NumeralsConverter(baseNumerals);
 
-converter.getValueFromIndex(10_0001); // "一〇〇〇〇一"
-converter.getValueFromIndex(10_0101); // "一〇〇一〇一"
-converter.getValueFromIndex(10_1001); // "一〇一〇〇一"
-converter.getValueFromIndex(10_1010); // "一〇一〇一〇"
+converter.getValueFromIndex(10_0001);	// "一〇〇〇〇一"
+converter.getValueFromIndex(10_0101);	// "一〇〇一〇一"
+converter.getValueFromIndex(10_1001);	// "一〇一〇〇一"
+converter.getValueFromIndex(10_1010);	// "一〇一〇一〇"
 
-converter.getIndexFromValue("一〇〇〇〇一"); // "100001"
-converter.getIndexFromValue("一〇〇一〇一"); // "100101"
-converter.getIndexFromValue("一〇一〇〇一"); // "101001"
-converter.getIndexFromValue("一〇一〇一〇"); // "101010"
+converter.getIndexFromValue("一〇〇〇〇一");	// "100001"
+converter.getIndexFromValue("一〇〇一〇一");	// "100101"
+converter.getIndexFromValue("一〇一〇〇一");	// "101001"
+converter.getIndexFromValue("一〇一〇一〇");	// "101010"
 ```
 
 ## API
@@ -280,6 +278,7 @@ const converter = new NumeralsConverter(array);
 输入一系列数组下标返回数组的项。
 
 ##### converter.getIndexFromValue(strList: string)
+
 
 输入一系列数组项返回数组下标。
 

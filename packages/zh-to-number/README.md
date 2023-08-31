@@ -10,7 +10,7 @@
 ## Highlights
 
 - 📦 零依赖：无需依赖其他库或框架。
-- ⚙️ 支持 ESM、CJS 和 IIFE 引入：可根据项目需求选择合适的引入方式。
+- ⚙️  支持 ESM、CJS 和 IIFE 引入：可根据项目需求选择合适的引入方式。
 - 📝 支持简体中文和繁体中文的大小写数字：满足不同语境下的需求。
 - 🔢 大数支持：显示大数无精度问题，保持精确性。
 - 🔧 可自定义配置：根据个人需求调整库的行为和设置。
@@ -28,13 +28,13 @@ npm install zh-to-number
 ```ts
 import { zhToNumber } from "zh-to-number";
 
-zhToNumber("你好"); // NaN
-zhToNumber("零"); // "0"
-zhToNumber("零点一"); // "0.1"
-zhToNumber("一千万零一"); // "10000001"
-zhToNumber("一千二百三十四万五千六百七十八"); // "12345678"
-zhToNumber("一十"); // "10"
-zhToNumber("十"); // "10"
+zhToNumber("你好");                                         // NaN
+zhToNumber("零");                                           // "0"
+zhToNumber("零点一");                                       // "0.1"
+zhToNumber("一千万零一");                                   // "10000001"
+zhToNumber("一千二百三十四万五千六百七十八");                   // "12345678"
+zhToNumber("一十");                                        // "10"
+zhToNumber("十");                                         // "10"
 zhToNumber("壹仟万零壹", { language: "zh-CN-uppercase" }); // "10000001"
 ```
 
@@ -44,9 +44,7 @@ zhToNumber("壹仟万零壹", { language: "zh-CN-uppercase" }); // "10000001"
 
 ```html
 <script src="https://unpkg.com/zh-to-number/dist/zh-to-number.global.js"></script>
-<script>
-	console.log(__ZH_TO_NUMBER__.zhToNumber("一十"));
-</script>
+<script>console.log(__ZH_TO_NUMBER__.zhToNumber("一十"));</script>
 ```
 
 这里我们使用了 [unpkg](https://unpkg.com/)，但你也可以使用任何提供 npm 包服务的 CDN，例如 [jsdelivr](https://www.jsdelivr.com/) 或 [cdnjs](https://cdnjs.com/)。当然，你也可以下载此文件并自行提供服务。
@@ -62,7 +60,7 @@ const options = {
 	language: "zh-CN-lowercase" as const,
 	magnitudeList: [...RESOURCES["zh-CN-lowercase"].magnitudeList, "京"],
 };
-zhToNumber("一京", options); // "10000000000000000"
+zhToNumber("一京", options) // "10000000000000000"
 ```
 
 ## API
