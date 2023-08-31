@@ -1,10 +1,10 @@
 {
-	"name": "number-zh-cli",
+	"name": "number-zh",
 	"version": "0.0.0",
 	"type": "module",
 	"license": "MIT",
 	"author": "Condor Hero",
-	"description": "在终端实现阿拉伯数字与中文数字之间的互相转换",
+	"description": "阿拉伯数字与中文数字之间的互相转换",
 	"exports": {
 		".": {
 			"require": "./dist/index.cjs",
@@ -33,6 +33,7 @@
 		"bin"
 	],
 	"keywords": [
+		"number-zh",
 		"number-zh-cli",
 		"number-to-zh",
 		"zh-to-number",
@@ -44,7 +45,7 @@
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/condorheroblog/number-zh.git",
-		"directory": "packages/cli"
+		"directory": "packages/all"
 	},
 	"bugs": {
 		"url": "https://github.com/condorheroblog/number-zh/issues"
@@ -53,21 +54,17 @@
 	"scripts": {
 		"prepublishOnly": "nr build",
 		"test": "vitest",
-		"dev": "esno ./src/runNumberToZh.ts",
+		"dev": "esno ./src/index.ts",
 		"build": "rimraf dist && rollup -c",
 		"build:watch": "rimraf dist && rollup -c -w",
 		"typecheck": "tsc --noEmit",
-		"release": "bumpp -c 'release(number-zh-cli): v%s' -t 'number-zh-cli_v%s' && pnpm publish"
+		"release": "bumpp -c 'release(number-zh): v%s' -t 'number-zh_v%s' && pnpm publish"
 	},
 	"dependencies": {
-		"cac": "^6.7.14",
 		"number-to-zh": "workspace:*",
 		"number-to-zh-currency": "workspace:*",
 		"zh-currency-to-number": "workspace:*",
 		"zh-to-number": "workspace:*"
-	},
-	"devDependencies": {
-		"fast-glob": "^3.3.1"
 	},
 	"publishConfig": {
 		"access": "public",

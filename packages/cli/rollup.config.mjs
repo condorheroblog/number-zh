@@ -1,6 +1,5 @@
 // rollup.config.mjs
 import { readFileSync } from "node:fs";
-import { parse } from "node:path";
 import esbuild from "rollup-plugin-esbuild";
 import fg from "fast-glob";
 import { dts } from "rollup-plugin-dts";
@@ -25,21 +24,27 @@ const functionPaths = fg.sync("./src/*.ts");
 const rollupConfig = [];
 
 for (const filePath of functionPaths) {
-	const parsed = parse(filePath);
+	// const parsed = parse(filePath);
 	rollupConfig.push({
 		input: filePath,
 		external,
 		plugins: [json(), esbuild()],
 		output: [
 			{
-				file: `./dist/${parsed.name}.cjs`,
+				dir: "dist",
 				format: "cjs",
 				banner,
+				entryFileNames: "[name].cjs",
+				preserveModules: true,
+				preserveModulesRoot: "src",
 			},
 			{
-				file: `./dist/${parsed.name}.mjs`,
+				dir: "dist",
 				format: "esm",
 				banner,
+				entryFileNames: "[name].mjs",
+				preserveModules: true,
+				preserveModulesRoot: "src",
 			},
 		],
 	});

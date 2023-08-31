@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/npm/l/number-zh-cli)](https://github.com/condorheroblog/number-zh/blob/main/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/condorheroblog/number-zh)](https://github.com/condorheroblog/number-zh/blob/main/packages/cli)
 
-阿拉伯数字与中文数字之间的互相转换
+在终端实现阿拉伯数字与中文数字之间的互相转换
 
 ## Install
 

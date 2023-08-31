@@ -2,9 +2,30 @@
 
 数字转（大写，小写）简 / 繁体中文数字，金额
 
+## Number-zh
+
+包含 [number-to-zh](https://github.com/condorheroblog/number-zh/tree/main/packages/number-to-zh)、[zh-to-number](https://github.com/condorheroblog/number-zh/tree/main/packages/zh-to-number)、[zh-currency-to-number](https://github.com/condorheroblog/number-zh/tree/main/packages/zh-currency-to-number)、[number-to-zh-currency](https://github.com/condorheroblog/number-zh/tree/main/packages/number-to-zh-currency) 的合集。
+
+
+```bash
+npm install number-zh
+```
+
+```ts
+import { NumberZh } from "number-zh";
+const numberZh = new NumberZh();
+
+numberZh.numberToZh(66999);                              // "六万六千九百九十九"
+numberZh.zhToNumber("六万六千九百九十九");                  // "66999"
+numberZh.zhCurrencyToNumber("人民币陆万陆仟玖佰玖拾玖圆整");  // "¥66999"
+numberZh.numberToZhCurrency("66999");                    // "人民币陆万陆仟玖佰玖拾玖圆整"
+```
+
+更多查看文档 [number-zh](https://github.com/condorheroblog/number-zh/tree/main/packages/all)。
+
 ## Number-zh-cli
 
-阿拉伯数字与中文数字之间的互相转换
+**命令行形式的**阿拉伯数字与中文数字之间的互相转换
 
 ```bash
 npm install -g number-zh-cli

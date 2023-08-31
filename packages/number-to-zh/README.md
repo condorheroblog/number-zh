@@ -225,7 +225,7 @@ Type: `4 | "Quaternary" | 8 | "Octal"`
 
 ##### numericUnderscores
 
-Type: `string`
+Type: `string`\
 Default: `_`
 
 字符串数字中支持原生数字分节。
