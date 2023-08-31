@@ -1,38 +1,55 @@
 // rollup.config.mjs
 import { readFileSync } from "node:fs";
+import { parse } from "node:path";
 import esbuild from "rollup-plugin-esbuild";
+import fg from "fast-glob";
 import { dts } from "rollup-plugin-dts";
-
-// https://github.com/tc39/proposal-import-attributes
-// import pkg from "./package.json" with { type: "json"};
+import json from "@rollup/plugin-json";
 
 const pkg = JSON.parse(readFileSync("./package.json", "utf-8"));
-const external = [...Object.keys(pkg.devDependencies), ...Object.keys(pkg.peerDependencies)];
+const external = [...Object.keys(pkg.devDependencies), ...Object.keys(pkg.dependencies)];
+
+const banner = `/**
+ * ${pkg.name} ${pkg.version}
+ * Author ${pkg.author}
+ * License ${pkg.license}
+ * ©️ 2023
+ * Homepage ${pkg.homepage}
+ */\n`;
+
+const functionPaths = fg.sync("./src/*.ts");
 
 /**
  * @type {import('rollup').RollupOptions}
  */
-export const rollupConfig = [
-	{
-		input: "./src/index.ts",
+const rollupConfig = [];
+
+for (const filePath of functionPaths) {
+	const parsed = parse(filePath);
+	rollupConfig.push({
+		input: filePath,
 		external,
-		plugins: [esbuild()],
+		plugins: [json(), esbuild()],
 		output: [
 			{
-				file: "./dist/index.cjs",
+				file: `./dist/${parsed.name}.cjs`,
 				format: "cjs",
+				banner,
 			},
 			{
-				file: "./dist/index.mjs",
+				file: `./dist/${parsed.name}.mjs`,
 				format: "esm",
+				banner,
 			},
 		],
-	},
-	{
-		input: "./src/index.ts",
-		plugins: [dts()],
-		output: [{ file: "./dist/index.d.cts" }, { file: "./dist/index.d.mts" }],
-	},
-];
+	});
+}
+
+rollupConfig.push({
+	input: "./src/index.ts",
+	external,
+	plugins: [json(), dts()],
+	output: [{ file: `./dist/index.d.cts` }, { file: `./dist/index.d.mts` }],
+});
 
 export default rollupConfig;

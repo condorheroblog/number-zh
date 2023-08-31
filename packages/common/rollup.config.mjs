@@ -5,10 +5,9 @@ import { dts } from "rollup-plugin-dts";
 /**
  * @type {import('rollup').RollupOptions}
  */
-export const rollupConfig = [
+const rollupConfig = [
 	{
 		input: "./src/index.ts",
-		external,
 		plugins: [esbuild()],
 		output: [
 			{
@@ -29,10 +28,7 @@ export const rollupConfig = [
 	{
 		input: "./src/index.ts",
 		plugins: [dts()],
-		output: [
-			{ file: "./dist/index.d.cts" },
-			{ file: "./dist/index.d.mts" },
-		],
+		output: [{ file: "./dist/index.d.cts" }, { file: "./dist/index.d.mts" }],
 	},
 ];
 

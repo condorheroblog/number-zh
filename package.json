@@ -21,12 +21,12 @@
 		"dev:zh-to-number": "esno packages/zh-to-number/src/zhToNumber.ts",
 		"dev:number-to-zh-currency": "esno packages/number-to-zh-currency/src/numberToZhCurrency.ts",
 		"dev:zh-currency-to-number": "esno packages/zh-currency-to-number/src/zhCurrencyToNumber.ts",
-		"lint": "eslint .",
+		"lint": "eslint README.md",
 		"lint:fix": "eslint . --fix",
 		"format": "prettier --write .",
 		"test": "vitest",
-		"build": "rimraf dist && rollup -c",
-		"build:watch": "rimraf dist && rollup -c -w",
+		"build": "nr -r build",
+		"build:watch": "nr -r build:watch",
 		"typecheck": "tsc --noEmit",
 		"release": "bumpp -r && pnpm -r publish --access public"
 	},
@@ -34,7 +34,7 @@
 		"pre-commit": "npx lint-staged"
 	},
 	"lint-staged": {
-		"*.{ts,js}": [
+		"*.{ts,js,mjs,cjs,md,yaml,json}": [
 			"eslint --fix",
 			"prettier --write"
 		]
@@ -47,6 +47,7 @@
 		"esbuild": "^0.19.2",
 		"eslint": "^8.47.0",
 		"eslint-config-prettier": "^9.0.0",
+		"eslint-plugin-mdx": "^2.2.0",
 		"eslint-plugin-prettier": "^5.0.0",
 		"esno": "^0.17.0",
 		"lint-staged": "^14.0.0",

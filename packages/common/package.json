@@ -6,7 +6,6 @@
 	"license": "MIT",
 	"author": "Condor Hero",
 	"description": "阿拉伯数字转（大写，小写）简 / 繁体中文数字，金额",
-	"bin": {},
 	"exports": {
 		".": {
 			"require": "./dist/index.cjs",

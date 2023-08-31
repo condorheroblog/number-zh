@@ -3,3 +3,4 @@ es/
 website/
 node_modules/
 package-lock.json
+pnpm-lock.yaml

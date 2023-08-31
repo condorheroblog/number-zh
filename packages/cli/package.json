@@ -5,7 +5,6 @@
 	"license": "MIT",
 	"author": "Condor Hero",
 	"description": "阿拉伯数字与中文数字之间的互相转换",
-	"bin": {},
 	"exports": {
 		".": {
 			"require": "./dist/index.cjs",
@@ -23,8 +22,15 @@
 			]
 		}
 	},
+	"bin": {
+		"number-to-zh": "./bin/number-to-zh.mjs",
+		"number-to-zh-currency": "./bin/number-to-zh-currency.mjs",
+		"zh-currency-to-number": "./bin/zh-currency-to-number.mjs",
+		"zh-to-number": "./bin/zh-to-number.mjs"
+	},
 	"files": [
-		"dist"
+		"dist",
+		"bin"
 	],
 	"keywords": [
 		"number-zh-cli",
@@ -47,10 +53,21 @@
 	"scripts": {
 		"prepublishOnly": "nr build",
 		"test": "vitest",
+		"dev": "esno ./src/runNumberToZh.ts",
 		"build": "rimraf dist && rollup -c",
 		"build:watch": "rimraf dist && rollup -c -w",
 		"typecheck": "tsc --noEmit",
 		"release": "bumpp -c 'release(number-zh-cli): v%s' -t 'number-zh-cli_v%s' && pnpm publish"
+	},
+	"dependencies": {
+		"cac": "^6.7.14",
+		"number-to-zh": "workspace:*",
+		"number-to-zh-currency": "workspace:*",
+		"zh-currency-to-number": "workspace:*",
+		"zh-to-number": "workspace:*"
+	},
+	"devDependencies": {
+		"fast-glob": "^3.3.1"
 	},
 	"publishConfig": {
 		"access": "public",

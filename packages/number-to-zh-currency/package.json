@@ -5,7 +5,6 @@
 	"license": "MIT",
 	"author": "Condor Hero",
 	"description": "阿拉伯数字转中文金额数字",
-	"bin": {},
 	"exports": {
 		".": {
 			"require": "./dist/index.cjs",
