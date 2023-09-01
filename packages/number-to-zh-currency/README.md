@@ -75,10 +75,10 @@ Default: `true`
 
 金额在角位结束时，是否添加「正｜整」，例如，默认情况下数字金额 `0.1` 转为大写金额为「人民币壹角整」。
 
-##### hangingZerosAfterDigits
+##### hangingZerosAroundDigits
 
-Type: `boolean`\
-Default: `true`
+Type: `false | "before" | "after"`\
+Default: `after`
 
 数级后面的千位不是零，数级前面的个位是零，零加在数级的「后」面，人民银行规定的错误写法。例如当数字金额的万位是 0，而千位不是 0，人民一行规定 `107000.53` 转为大写金额为「人民币壹拾万**零**柒仟元伍角叁分」或者是「人民币壹拾万柒仟元伍角叁分」
 

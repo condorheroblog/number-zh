@@ -16,7 +16,7 @@ export function integerToZh(integerPart: string, resolved: NumberTranslatorOptio
 			integerSize > 1 &&
 			integerSize <= 4 &&
 			chineseNumberString.endsWith(chineseZero) &&
-			(resolved.hangingZerosBeforeDigits || resolved.hangingZerosAfterDigits)
+			resolved.hangingZerosAroundDigits
 		) {
 			chineseNumberString = operateSequentCharacters(chineseNumberString, chineseZero, { mode: "end" });
 		}

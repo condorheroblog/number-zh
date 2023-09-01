@@ -25,8 +25,7 @@ describe(resolveOptions.name, () => {
 			    "百",
 			    "千",
 			  ],
-			  "hangingZerosAfterDigits": false,
-			  "hangingZerosBeforeDigits": false,
+			  "hangingZerosAroundDigits": false,
 			  "magnitudeList": [
 			    "",
 			    "万",

@@ -18,7 +18,7 @@ export function resolveOptions(options: NumberToZhCurrencyOptions) {
 		amountSuffix: options.amountSuffix ?? AMOUNT_SUFFIX,
 
 		...resolvedNumberToZhOptions,
-		hangingZerosAfterDigits: options.hangingZerosAfterDigits ?? true,
+		hangingZerosAroundDigits: options.hangingZerosAroundDigits ?? "after",
 		numericUnderscores: options.numericUnderscores ?? ",",
 	};
 }

@@ -42,8 +42,7 @@ export function resolveOptions(options: NumberToZhOptions) {
 		repeatChar,
 
 		numericUnderscores: options.numericUnderscores ?? "_",
-		hangingZerosBeforeDigits: options.hangingZerosBeforeDigits ?? false,
-		hangingZerosAfterDigits: options.hangingZerosAfterDigits ?? false,
+		hangingZerosAroundDigits: options.hangingZerosAroundDigits ?? false,
 
 		digitsList: options.digitsList ?? languageConfig.digitsList,
 		magnitudeList: options.magnitudeList ?? languageConfig.magnitudeList,

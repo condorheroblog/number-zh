@@ -54,9 +54,9 @@ describe(numberToZhCurrency.name, () => {
 		expect(numberToZhCurrency(1680.32)).toBe("人民币壹仟陆佰捌拾圆叁角贰分");
 	});
 
-	test("hangingZerosAfterDigits", async ({ expect }) => {
+	test("hangingZerosAroundDigits", async ({ expect }) => {
 		expect(numberToZhCurrency(10_7000.53)).toBe("人民币壹拾万零柒仟圆伍角叁分");
-		expect(numberToZhCurrency(10_7000.53, { hangingZerosAfterDigits: false })).toBe("人民币壹拾万柒仟圆伍角叁分");
+		expect(numberToZhCurrency(10_7000.53, { hangingZerosAroundDigits: false })).toBe("人民币壹拾万柒仟圆伍角叁分");
 	});
 
 	test("amountPrefix", async ({ expect }) => {

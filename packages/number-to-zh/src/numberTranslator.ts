@@ -43,7 +43,7 @@ export function numberTranslator({
 		return operateSequentCharacters(chineseNumberGroup, chineseZero, [
 			{ mode: "middle", remove: false },
 			// 当数级后面的千位不为零，数级前面有零，根据条件判断数级前面是否需要一个零
-			{ mode: "end", remove: !resolved.hangingZerosBeforeDigits && !resolved.hangingZerosAfterDigits },
+			{ mode: "end", remove: !resolved.hangingZerosAroundDigits },
 		]);
 	} else {
 		/**
@@ -74,7 +74,7 @@ export function numberTranslator({
 			const isStartZero = belowDigitalSlice.charAt(0) === "0";
 			if (isStartZero) {
 				// 当数级后面的千位为零，需要清除数级前面的零
-				if (resolved.hangingZerosBeforeDigits || resolved.hangingZerosAfterDigits) {
+				if (resolved.hangingZerosAroundDigits || resolved.hangingZerosAroundDigits) {
 					chineseNumberGroup =
 						operateSequentCharacters(aboveDigitalNumber, chineseZero, { mode: "end" }) +
 						numberMagnitude +
@@ -84,8 +84,8 @@ export function numberTranslator({
 					chineseNumberGroup = aboveDigitalNumber + numberMagnitude + chineseZero + belowDigitalNumber;
 				}
 			} else {
-				// hangingZerosAfterDigits 为 true 且数级前面有零，调整零到数级的后面
-				if (aboveDigitalNumber.endsWith(chineseZero) && resolved.hangingZerosAfterDigits) {
+				// hangingZerosAroundDigits === after 且数级前面有零，调整零到数级的后面
+				if (aboveDigitalNumber.endsWith(chineseZero) && resolved.hangingZerosAroundDigits === "after") {
 					chineseNumberGroup =
 						aboveDigitalNumber.slice(0, aboveDigitalNumber.length - 1) +
 						numberMagnitude +

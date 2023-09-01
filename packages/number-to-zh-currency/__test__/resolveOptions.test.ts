@@ -32,8 +32,7 @@ describe(resolveOptions.name, () => {
 			    "角",
 			    "分",
 			  ],
-			  "hangingZerosAfterDigits": true,
-			  "hangingZerosBeforeDigits": false,
+			  "hangingZerosAroundDigits": "after",
 			  "magnitudeList": [
 			    "",
 			    "万",

@@ -46,8 +46,7 @@ export function numberToZhCurrency(num: number | string, options: NumberToZhCurr
 		baseNumerals: resolved.baseNumerals,
 		minusSign: resolved.minusSign,
 		decimalPoint: resolved.decimalPoint,
-		hangingZerosBeforeDigits: resolved.hangingZerosBeforeDigits,
-		hangingZerosAfterDigits: resolved.hangingZerosAfterDigits,
+		hangingZerosAroundDigits: resolved.hangingZerosAroundDigits,
 		numericUnderscores: resolved.numericUnderscores,
 	};
 

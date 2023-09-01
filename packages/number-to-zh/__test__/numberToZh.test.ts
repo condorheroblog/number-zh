@@ -220,37 +220,29 @@ describe(`${numberToZh.name} - digitsAboveTenThousand`, () => {
 	});
 });
 
-describe(`${numberToZh.name} - hangingZerosBeforeDigits`, () => {
-	test(`hangingZerosBeforeDigits is true`, async ({ expect }) => {
-		expect(numberToZh(0, { hangingZerosBeforeDigits: true })).toBe("零");
-		expect(numberToZh(40, { hangingZerosBeforeDigits: true })).toBe("四十");
-		expect(numberToZh(10_0010, { hangingZerosBeforeDigits: true })).toBe("一十万零一十");
-		expect(numberToZh(20_5000, { hangingZerosBeforeDigits: true })).toBe("二十零万五千");
-		expect(numberToZh(1_0010_1234, { hangingZerosBeforeDigits: true })).toBe("一亿零一十零万一千二百三十四");
-		expect(numberToZh(1_0010_1000, { hangingZerosBeforeDigits: true })).toBe("一亿零一十零万一千");
+describe(`${numberToZh.name} - hangingZerosAroundDigits`, () => {
+	test(`hangingZerosAroundDigits is before`, async ({ expect }) => {
+		expect(numberToZh(0, { hangingZerosAroundDigits: "before" })).toBe("零");
+		expect(numberToZh(40, { hangingZerosAroundDigits: "before" })).toBe("四十");
+		expect(numberToZh(10_0010, { hangingZerosAroundDigits: "before" })).toBe("一十万零一十");
+		expect(numberToZh(20_5000, { hangingZerosAroundDigits: "before" })).toBe("二十零万五千");
+		expect(numberToZh(1_0010_1234, { hangingZerosAroundDigits: "before" })).toBe("一亿零一十零万一千二百三十四");
+		expect(numberToZh(1_0010_1000, { hangingZerosAroundDigits: "before" })).toBe("一亿零一十零万一千");
 	});
 
-	test(`hangingZerosBeforeDigits is false`, async ({ expect }) => {
-		expect(numberToZh(20_5000, { hangingZerosBeforeDigits: false })).toBe("二十万五千");
-		expect(numberToZh(1_0010_1234, { hangingZerosBeforeDigits: false })).toBe("一亿零一十万一千二百三十四");
-		expect(numberToZh(1_0010_1000, { hangingZerosBeforeDigits: false })).toBe("一亿零一十万一千");
-	});
-});
-
-describe(`${numberToZh.name} - hangingZerosAfterDigits`, () => {
-	test(`hangingZerosAfterDigits is true`, async ({ expect }) => {
-		expect(numberToZh(0, { hangingZerosAfterDigits: true })).toBe("零");
-		expect(numberToZh(40, { hangingZerosAfterDigits: true })).toBe("四十");
-		expect(numberToZh(10_0010, { hangingZerosAfterDigits: true })).toBe("一十万零一十");
-		expect(numberToZh(20_5000, { hangingZerosAfterDigits: true })).toBe("二十万零五千");
-		expect(numberToZh(1_0010_1234, { hangingZerosAfterDigits: true })).toBe("一亿零一十万零一千二百三十四");
-		expect(numberToZh(1_0010_1000, { hangingZerosAfterDigits: true })).toBe("一亿零一十万零一千");
+	test(`hangingZerosAroundDigits is after`, async ({ expect }) => {
+		expect(numberToZh(0, { hangingZerosAroundDigits: "after" })).toBe("零");
+		expect(numberToZh(40, { hangingZerosAroundDigits: "after" })).toBe("四十");
+		expect(numberToZh(10_0010, { hangingZerosAroundDigits: "after" })).toBe("一十万零一十");
+		expect(numberToZh(20_5000, { hangingZerosAroundDigits: "after" })).toBe("二十万零五千");
+		expect(numberToZh(1_0010_1234, { hangingZerosAroundDigits: "after" })).toBe("一亿零一十万零一千二百三十四");
+		expect(numberToZh(1_0010_1000, { hangingZerosAroundDigits: "after" })).toBe("一亿零一十万零一千");
 	});
 
-	test(`hangingZerosAfterDigits is false`, async ({ expect }) => {
-		expect(numberToZh(20_5000, { hangingZerosAfterDigits: false })).toBe("二十万五千");
-		expect(numberToZh(1_0010_1234, { hangingZerosAfterDigits: false })).toBe("一亿零一十万一千二百三十四");
-		expect(numberToZh(1_0010_1000, { hangingZerosAfterDigits: false })).toBe("一亿零一十万一千");
+	test(`hangingZerosAroundDigits is false`, async ({ expect }) => {
+		expect(numberToZh(20_5000, { hangingZerosAroundDigits: false })).toBe("二十万五千");
+		expect(numberToZh(1_0010_1234, { hangingZerosAroundDigits: false })).toBe("一亿零一十万一千二百三十四");
+		expect(numberToZh(1_0010_1000, { hangingZerosAroundDigits: false })).toBe("一亿零一十万一千");
 	});
 });
 
