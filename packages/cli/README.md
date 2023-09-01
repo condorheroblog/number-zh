@@ -50,7 +50,7 @@ Options:
 zh-to-number/0.0.0
 
 Usage:
-  $ zh-to-number <num>
+  $ zh-to-number <inputNumberString>
 
 Options:
   -l, --language [language]                  language (default: zh-CN-lowercase)
@@ -73,7 +73,7 @@ Options:
 zh-currency-to-number/0.0.0
 
 Usage:
-  $ zh-currency-to-number <num>
+  $ zh-currency-to-number <inputNumberString>
 
 Options:
   -l, --language [language]                          language (default: zh-CN-lowercase)
@@ -126,6 +126,15 @@ Options:
   -v, --version                                          Display version number
   -h, --help                                             Display this message
 ```
+
+## Related
+
+- [number-zh](https://github.com/condorheroblog/number-zh/tree/main/packages/all)
+- [number-to-zh](https://github.com/condorheroblog/number-zh/tree/main/packages/number-to-zh)
+- [zh-to-number](https://github.com/condorheroblog/number-zh/tree/main/packages/zh-to-number)
+- [zh-currency-to-number](https://github.com/condorheroblog/number-zh/tree/main/packages/zh-currency-to-number)
+- [number-to-zh-currency](https://github.com/condorheroblog/number-zh/tree/main/packages/number-to-zh-currency)
+
 
 ## License
 

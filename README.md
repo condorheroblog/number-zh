@@ -1,6 +1,8 @@
-# Number-zh
+<p align="center">
+	<img src="https://github.com/condorheroblog/number-zh/assets/47056890/61ef83a0-46b2-44e3-8224-dab8d4007a7c" alt="number-zh" />
+</p>
 
-数字转（大写，小写）简 / 繁体中文数字，金额
+<p align="center">阿拉伯数字、中文数字和金额之间相互转换</p>
 
 ## Number-zh
 
@@ -25,7 +27,7 @@ numberZh.numberToZhCurrency("66999");                    // "人民币陆万陆�
 
 ## Number-zh-cli
 
-**命令行形式的**阿拉伯数字与中文数字之间的互相转换
+**在终端使用的**[number-zh](https://github.com/condorheroblog/number-zh/tree/main/packages/all)。
 
 ```bash
 npm install -g number-zh-cli

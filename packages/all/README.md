@@ -30,6 +30,18 @@ numberZh.zhCurrencyToNumber("人民币陆万陆仟玖佰玖拾玖圆整");  // "
 numberZh.numberToZhCurrency("66999");                    // "人民币陆万陆仟玖佰玖拾玖圆整"
 ```
 
+### CDN
+
+你可以借助 script 标签直接通过 CDN 来使用：
+
+```html
+<script src="https://unpkg.com/number-zh/dist/number-zh.global.js"></script>
+<script>console.log(__NUMBER_ZH__.NumberZh);</script>
+```
+
+这里我们使用了 [unpkg](https://unpkg.com/)，但你也可以使用任何提供 npm 包服务的 CDN，例如 [jsdelivr](https://www.jsdelivr.com/) 或 [cdnjs](https://cdnjs.com/)。当然，你也可以下载此文件并自行提供服务。
+
+
 ## API
 
 ### new NumberZh(comprehensiveOptions?)
@@ -110,6 +122,14 @@ Type: `string`
 
 Type: `ZhToNumberOptions`\
 Default: `{}`
+
+## Related
+
+- [number-to-zh](https://github.com/condorheroblog/number-zh/tree/main/packages/number-to-zh)
+- [zh-to-number](https://github.com/condorheroblog/number-zh/tree/main/packages/zh-to-number)
+- [zh-currency-to-number](https://github.com/condorheroblog/number-zh/tree/main/packages/zh-currency-to-number)
+- [number-to-zh-currency](https://github.com/condorheroblog/number-zh/tree/main/packages/number-to-zh-currency)
+- [number-zh-cli](https://github.com/condorheroblog/number-zh/tree/main/packages/cli)
 
 ## License
 

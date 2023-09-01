@@ -282,6 +282,14 @@ const converter = new NumeralsConverter(array);
 
 输入一系列数组项返回数组下标。
 
+## Related
+
+- [number-zh](https://github.com/condorheroblog/number-zh/tree/main/packages/all)
+- [zh-to-number](https://github.com/condorheroblog/number-zh/tree/main/packages/zh-to-number)
+- [zh-currency-to-number](https://github.com/condorheroblog/number-zh/tree/main/packages/zh-currency-to-number)
+- [number-to-zh-currency](https://github.com/condorheroblog/number-zh/tree/main/packages/number-to-zh-currency)
+- [number-zh-cli](https://github.com/condorheroblog/number-zh/tree/main/packages/cli)
+
 ## License
 
 [MIT](https://github.com/condorheroblog/number-zh/blob/main/LICENSE) License © 2023-Present [Condor Hero](https://github.com/condorheroblog)

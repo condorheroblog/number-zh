@@ -9,7 +9,7 @@ export function runZhCurrencyToNumber() {
 	try {
 		const cli = cac("zh-currency-to-number");
 
-		cli.usage("<num>").option("-l, --language [language]", `language (default: zh-CN-lowercase)`);
+		cli.usage("<inputNumberString>").option("-l, --language [language]", `language (default: zh-CN-lowercase)`);
 
 		for (const key in resolved) {
 			const value = resolved[key as keyof typeof resolved];

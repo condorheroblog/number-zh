@@ -131,6 +131,14 @@ Default: `点`
 
 对应语言「点」的写法。
 
+## Related
+
+- [number-zh](https://github.com/condorheroblog/number-zh/tree/main/packages/all)
+- [number-to-zh](https://github.com/condorheroblog/number-zh/tree/main/packages/number-to-zh)
+- [zh-currency-to-number](https://github.com/condorheroblog/number-zh/tree/main/packages/zh-currency-to-number)
+- [number-to-zh-currency](https://github.com/condorheroblog/number-zh/tree/main/packages/number-to-zh-currency)
+- [number-zh-cli](https://github.com/condorheroblog/number-zh/tree/main/packages/cli)
+
 ## License
 
 [MIT](https://github.com/condorheroblog/number-zh/blob/main/LICENSE) License © 2023-Present [Condor Hero](https://github.com/condorheroblog)

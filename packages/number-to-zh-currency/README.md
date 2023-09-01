@@ -128,6 +128,14 @@ Default: `整`
 
 参见 numberToZh 函数的 [options](https://github.com/condorheroblog/number-zh/blob/main/packages/number-to-zh/README.md#options)。
 
+## Related
+
+- [number-zh](https://github.com/condorheroblog/number-zh/tree/main/packages/all)
+- [number-to-zh](https://github.com/condorheroblog/number-zh/tree/main/packages/number-to-zh)
+- [zh-to-number](https://github.com/condorheroblog/number-zh/tree/main/packages/zh-to-number)
+- [zh-currency-to-number](https://github.com/condorheroblog/number-zh/tree/main/packages/zh-currency-to-number)
+- [number-zh-cli](https://github.com/condorheroblog/number-zh/tree/main/packages/cli)
+
 ## License
 
 [MIT](https://github.com/condorheroblog/number-zh/blob/main/LICENSE) License © 2023-Present [Condor Hero](https://github.com/condorheroblog)

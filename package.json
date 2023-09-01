@@ -3,9 +3,9 @@
 	"private": true,
 	"type": "module",
 	"license": "MIT",
-	"packageManager": "pnpm@8.6.12",
+	"packageManager": "pnpm@8.7.0",
 	"author": "Condor Hero",
-	"description": "阿拉伯数字转（大写，小写）简 / 繁体中文数字，金额",
+	"description": "阿拉伯数字、中文数字和金额之间相互转换",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/condorheroblog/number-zh.git"
@@ -43,26 +43,26 @@
 		]
 	},
 	"devDependencies": {
-		"@types/node": "^20.5.7",
 		"@rollup/plugin-json": "^6.0.0",
 		"@rollup/plugin-node-resolve": "^15.2.1",
-		"@typescript-eslint/eslint-plugin": "^6.4.0",
-		"@typescript-eslint/parser": "^6.4.0",
-		"bumpp": "^9.1.1",
+		"@types/node": "^20.5.7",
+		"@typescript-eslint/eslint-plugin": "^6.5.0",
+		"@typescript-eslint/parser": "^6.5.0",
+		"bumpp": "^9.2.0",
 		"esbuild": "^0.19.2",
-		"eslint": "^8.47.0",
+		"eslint": "^8.48.0",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-mdx": "^2.2.0",
 		"eslint-plugin-prettier": "^5.0.0",
 		"esno": "^0.17.0",
-		"lint-staged": "^14.0.0",
-		"prettier": "^3.0.1",
+		"lint-staged": "^14.0.1",
+		"prettier": "^3.0.3",
 		"rimraf": "^5.0.1",
-		"rollup": "^3.28.0",
-		"rollup-plugin-dts": "^5.3.1",
+		"rollup": "^3.28.1",
+		"rollup-plugin-dts": "^6.0.0",
 		"rollup-plugin-esbuild": "^5.0.0",
 		"simple-git-hooks": "^2.9.0",
-		"typescript": "^5.1.6",
-		"vitest": "^0.34.1"
+		"typescript": "^5.2.2",
+		"vitest": "^0.34.3"
 	}
 }

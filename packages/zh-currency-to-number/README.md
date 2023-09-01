@@ -106,6 +106,14 @@ Default: `整`
 
 参见 zhToNumber 函数的 [options](https://github.com/condorheroblog/number-zh/blob/main/packages/zh-to-number/README.md#options)。
 
+## Related
+
+- [number-zh](https://github.com/condorheroblog/number-zh/tree/main/packages/all)
+- [number-to-zh](https://github.com/condorheroblog/number-zh/tree/main/packages/number-to-zh)
+- [zh-to-number](https://github.com/condorheroblog/number-zh/tree/main/packages/zh-to-number)
+- [number-to-zh-currency](https://github.com/condorheroblog/number-zh/tree/main/packages/number-to-zh-currency)
+- [number-zh-cli](https://github.com/condorheroblog/number-zh/tree/main/packages/cli)
+
 ## License
 
 [MIT](https://github.com/condorheroblog/number-zh/blob/main/LICENSE) License © 2023-Present [Condor Hero](https://github.com/condorheroblog)
