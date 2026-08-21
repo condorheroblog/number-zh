@@ -1,3 +1,5 @@
+
+
 <p align="center">
 	<img src="https://github.com/condorheroblog/number-zh/assets/47056890/61ef83a0-46b2-44e3-8224-dab8d4007a7c" alt="number-zh" />
 </p>
@@ -27,7 +29,7 @@ numberZh.numberToZhCurrency("66999");                    // "人民币陆万陆�
 
 ## Number-zh-cli
 
-**在终端使用的**[number-zh](https://github.com/condorheroblog/number-zh/tree/main/packages/all)。
+**在终端使用的**[number-zh](https://github.com/condorheroblog/number-zh/tree/main/packages/cli)。
 
 ```bash
 npm install -g number-zh-cli
